@@ -1,5 +1,6 @@
 Oldmatome::Application.routes.draw do
   root  'products#index'
+  get "search" => "products#search"
   resources :products
 
   # The priority is based upon order of creation: first created -> highest priority.
