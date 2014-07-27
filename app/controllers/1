@@ -3,16 +3,11 @@ class ProductsController < ApplicationController
 
   def search
     #   @products = Product.search(params[:search])
-    @keyword = params[:search]
+    @keyword = params[:keyword]
     if @keyword.present?
       Amazon::Ecs.debug = true
-        @res = []
-      for i in 1..3 do
-        @res0 = Amazon::Ecs.item_search(params[:search], 
-                                        :item_page => i, :search_index => 'Electronics', :response_group => 'Medium')
-        @res.push(@res0)
-
-      end
+      @res = Amazon::Ecs.item_search(params[:keyword], 
+                                     :search_index => 'All', :response_group => 'Medium')
     else
       return
     end

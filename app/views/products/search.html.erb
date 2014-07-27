@@ -1,45 +1,46 @@
-<div class="center hero-unit">
-  <h1>検索結果</h1><br>
- 
-  <form class="form-horizontal" role="form" action="/search" method="get">
-    <div class="form-group">
-      <div class="col-sm-10">
-        <input type="search" name="search" class="form-control" placeholder="商品名、型番、メーカー名を入力してください" value="<%= params[:search] %>">
+<div id="content">
+  <div class="container">
+    <h1 class="center">検索結果</h1><br>
+
+    <form class="form-horizontal" role="form" action="/search" method="get">
+      <div class="form-group">
+        <div class="col-sm-8">
+          <input type="search" name="search" class="form-control" placeholder="商品名、型番、メーカー名を入力してください" value="<%= params[:search] %>">
+        </div>
+        <div class="col-sm-offset-2 col-sm-2">
+          <button type="submit" class="btn btn-default">検索</button>
+        </div>
+      </div>
+    </form>
+
+
+    <% if @res.present? %>
+        <div class="row">
+      <% for m in 0..2 do %>
+      <% @res[m].items.each do |i| %>
+          <div class="col-sm-3">
+            <div class="panel panel-default">
+              <div class="panel-body">
+                <%= link_to i.get('DetailPageURL') do %>
+                  <%= image_tag i.get('MediumImage/URL'), {:style => 'border: none;', :class => 'img-rounded'} %>
+                <% end %>
+              </div>
+              <div class="panel-footer">
+                <ul>
+                  <li><%= i.get('ASIN') %></li>               
+                  <li><%= i.get('OfferSummary/LowestUsedPrice/FormattedPrice') %></li>
+                  <li><%= i.get('ItemAttributes/Title') %></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+      <% end %> 
+      <% end %> 
+        </div>
+
+    <% end %> 
+
+
       </div>
     </div>
-    <div class="form-group">
-      <div class="col-sm-offset-2 col-sm-10">
-        <button type="submit" class="btn btn-default">検索</button>
-      </div>
-    </div>
-  </form>
-  
-
-  <% if @products.length > 0  then %>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>商品名</th>
-        <th>型番</th>
-        <th>ブランド</th>
-        <th>価格</th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <% @products.each do |product| %>
-        <tr class="table table-bordered">
-          <td><%= link_to product.title, product %></td>
-          <td><%= product.model_number %></td>
-          <td><%= product.brand %></td>
-          <td><%= product.price %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-<% else %>
-  <p>該当する商品がありません。<p/>
-<% end %>
-  <br>
-</div>
-<%= link_to 'New Product', new_product_path %>
+    <%= link_to 'New Product', new_product_path %>
