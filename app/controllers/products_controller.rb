@@ -2,20 +2,20 @@ class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update, :destroy]
 
   def search
-    #   @products = Product.search(params[:search])
-    @keyword = params[:search]
-    if @keyword.present?
-      Amazon::Ecs.debug = true
-        @res = []
-      for i in 1..3 do
-        @res0 = Amazon::Ecs.item_search(params[:search], 
-                                        :item_page => i, :search_index => 'Electronics', :response_group => 'Medium')
-        @res.push(@res0)
+    @products = Product.search(params[:search]).paginate(page: params[:page])
+#    @keyword = params[:search]
+#    if @keyword.present?
+#      Amazon::Ecs.debug = true
+#        @res = []
+#      for i in 1..3 do
+#        @res0 = Amazon::Ecs.item_search(params[:search], 
+#                                        :item_page => i, :search_index => 'Electronics', :response_group => 'Medium')
+#        @res.push(@res0)
 
-      end
-    else
-      return
-    end
+#      end
+#    else
+#      return
+#    end
   end
 
   def index

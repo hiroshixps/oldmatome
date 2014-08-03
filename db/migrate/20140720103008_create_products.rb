@@ -5,7 +5,7 @@ class CreateProducts < ActiveRecord::Migration
       t.string :model_number
       t.string :img_url
       t.integer :price
-
+      t.string :detail_url
       t.timestamps
     end
   end

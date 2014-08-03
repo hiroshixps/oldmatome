@@ -14,33 +14,32 @@
     </form>
 
 
-    <% if @res.present? %>
-        <div class="row">
-      <% for m in 0..2 do %>
-      <% @res[m].items.each do |i| %>
+    <% if @products.present? %>
+      <%= will_paginate %>
+      <div class="row">
+        <% @products.each do |product| %>
           <div class="col-sm-3">
             <div class="panel panel-default">
               <div class="panel-body">
-                <%= link_to i.get('DetailPageURL') do %>
-                  <%= image_tag i.get('MediumImage/URL'), {:style => 'border: none;', :class => 'img-rounded'} %>
+                <%= link_to product  do %>
+                  <%= image_tag product.img_url, {:style => 'border: none;', :class => 'img-rounded'} %>
                 <% end %>
               </div>
               <div class="panel-footer">
                 <ul>
-                  <li><%= i.get('ASIN') %></li>               
-                  <li><%= i.get('OfferSummary/LowestUsedPrice/Amount') %></li>
-                  <li><%= i.get('ItemAttributes/Title') %></li>
+                  <li><%= product.model_number %></li>               
+                  <li><%= product.price %></li>
+                  <li><%= product.title %></li>
                 </ul>
               </div>
             </div>
           </div>
-      <% end %> 
-      <% end %> 
-        </div>
-
+        <% end %> 
+      </div>
+      <%= will_paginate %>
     <% end %> 
 
 
-      </div>
-    </div>
-    <%= link_to 'New Product', new_product_path %>
+  </div>
+</div>
+<%= link_to 'New Product', new_product_path %>

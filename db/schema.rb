@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 20140720103008) do
     t.string   "model_number"
     t.string   "img_url"
     t.integer  "price"
+    t.string   "detail_url"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
