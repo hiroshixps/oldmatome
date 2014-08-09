@@ -11,10 +11,16 @@ gem 'coffee-rails', '4.0.1'
 gem 'jquery-rails', '3.0.4'
 gem 'turbolinks', '1.1.1'
 gem 'jbuilder', '1.0.2'
+#gem 'unicorn'
+#gem 'therubyracer'
 
 group :development do
   gem 'sqlite3', '1.3.8'
-    gem 'rails-footnotes'
+  gem 'rails-footnotes'
+#  gem 'capistrano'
+#  gem 'capistrano_colors'
+#  gem 'capistrano-ext'
+#  gem 'capistrano_rsync_with_remote_cache'
 end
 
 group :doc do
@@ -24,5 +30,5 @@ end
 group :production do
   gem 'pg', '0.15.1'
   gem 'rails_12factor', '0.0.2'
-  gem 'therubyracer'
+  # gem 'therubyracer'
 end
