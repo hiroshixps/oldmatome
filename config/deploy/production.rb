@@ -1,4 +1,4 @@
-i# Define roles, user and IP address of deployment server
+# Define roles, user and IP address of deployment server
 # role :name, %{[user]@[IP adde.]}
 role :app, %w{root@128.199.134.26}
 role :web, %w{root@128.199.134.26}
@@ -12,7 +12,7 @@ server '128.199.134.26', user: 'root', roles: %w{web}
 # for more options.
 set :ssh_options, {
     forward_agent: false,
-    auth_methods: %w(chocochoco),
+    auth_methods: %w(password),
     password: 'choco1831@',
     user: 'root',
 }
