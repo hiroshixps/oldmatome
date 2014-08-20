@@ -7,7 +7,7 @@ set :scm, :git
 set :repo_url, 'https://github.com/hiroshixps/oldmatome.git'
 
 # Define where to put your application code
-set :deploy_to, "/root/www"
+set :deploy_to, "/root/www/usedx"
 
 set :pty, true
 
