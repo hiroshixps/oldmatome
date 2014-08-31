@@ -14,11 +14,18 @@
 ActiveRecord::Schema.define(version: 20140720103008) do
 
   create_table "products", force: true do |t|
-    t.string   "title"
-    t.string   "model_number"
+    t.string   "product_name"
+    t.string   "brand"
+    t.string   "model"
+    t.string   "series"
+    t.integer  "new_price"
+    t.integer  "old_price"
     t.string   "img_url"
-    t.integer  "price"
-    t.string   "detail_url"
+    t.string   "kakaku_url"
+    t.string   "l_category"
+    t.string   "m_category"
+    t.string   "s_category"
+    t.text     "spec"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

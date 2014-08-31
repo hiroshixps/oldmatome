@@ -12,20 +12,20 @@
       </div>
     </form>
 
-    <h1 class="center"><%= @product.title %></h1>
+    <h1 class="center"><%= @product.product_name %></h1>
     <div class="row">
       <div class="col-sm-3">
         <div class="panel panel-default">
           <div class="panel-body">
-            <%= link_to @product.detail_url  do %>
+            <%= link_to @product.kakaku_url  do %>
               <%= image_tag @product.img_url, {:style => 'border: none;', :class => 'img-rounded'} %>
             <% end %>
           </div>
           <div class="panel-footer">
             <ul>
-              <li><%= @product.model_number %></li>               
-              <li><%= @product.price %></li>
-              <li><%= @product.title %></li>
+              <li><%= @product.model %></li>               
+              <li><%= @product.new_price %></li>
+              <li><%= @product.product_name %></li>
             </ul>
           </div>
         </div>
@@ -45,7 +45,7 @@
         </tr>
         <tr>
           <td>楽天中古市場</td>
-          <td><a href="http://hb.afl.rakuten.co.jp/hgc/0e6d5595.f4187c7a.0e6d5596.9b1eb6e7/?pc=http%3a%2f%2fsearch.rakuten.co.jp%2fsearch%2fevent%2f<%=url_encode(@product.title.first(20)) %>%2f-%2fev.19-evsitem.%25E3%2580%2590%25E4%25B8%25AD%25E5%258F%25A4%25E3%2580%2591-f.1-s.4-st.A-v.2%3fscid%3daf_link_urltxt&amp;m=http%3a%2f%2fm.rakuten.co.jp%2f" target="_blank">値段を確認！</a></td>
+          <td><a href="http://hb.afl.rakuten.co.jp/hgc/0e6d5595.f4187c7a.0e6d5596.9b1eb6e7/?pc=http%3a%2f%2fsearch.rakuten.co.jp%2fsearch%2fevent%2f<%=url_encode(@product.product_name.first(20)) %>%2f-%2fev.19-evsitem.%25E3%2580%2590%25E4%25B8%25AD%25E5%258F%25A4%25E3%2580%2591-f.1-s.4-st.A-v.2%3fscid%3daf_link_urltxt&amp;m=http%3a%2f%2fm.rakuten.co.jp%2f" target="_blank">値段を確認！</a></td>
         </tr>
         <tr>
           <td>ヤフオク</td>
