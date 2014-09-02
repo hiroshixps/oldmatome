@@ -36,7 +36,7 @@
           <td><%= link_to product.product_name, product %></td>
           <td><%= product.model %></td>
           <td><%= product.img_url %></td>
-          <td><%= product.new_price %></td>
+          <td><%= number_to_currency(product.new_price, :unit => "￥", :precision => 0) %></td>
         </tr>
       <% end %>
     </tbody>

@@ -24,7 +24,7 @@
           <div class="panel-footer">
             <ul>
               <li><%= @product.model %></li>               
-              <li><%= @product.new_price %></li>
+              <li><%= number_to_currency(@product.new_price, :unit => "￥", :precision => 0) %></li>
               <li><%= @product.product_name %></li>
             </ul>
           </div>
