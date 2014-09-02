@@ -1,5 +1,10 @@
 <div class="center hero-unit">
   <h1>UsedX</h1><br>
+        <ul>
+      <% LCategory.all.each do |lc| %>
+        <li><%=link_to lc.l_category, controller: "products", action: "search", search: lc.l_category %></li>
+      <% end %>
+        </ul>
 
   <form class="form-horizontal" role="form" action="/search" method="get">
     <div class="form-group">
