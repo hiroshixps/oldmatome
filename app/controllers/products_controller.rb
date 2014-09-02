@@ -1,5 +1,4 @@
 class ProductsController < ApplicationController
-  validates :product_name, presence: true
   before_action :set_product, only: [:show, :edit, :update, :destroy]
 
   def search
