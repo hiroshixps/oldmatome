@@ -12,6 +12,7 @@ class CreateProducts < ActiveRecord::Migration
       t.string :l_category
       t.string :m_category
       t.string :s_category
+      t.string :new_url
       t.text :spec
       t.timestamps
     end

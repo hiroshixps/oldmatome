@@ -1,4 +1,5 @@
 class ProductsController < ApplicationController
+  validates :product_name, presence: true
   before_action :set_product, only: [:show, :edit, :update, :destroy]
 
   def search
@@ -74,6 +75,6 @@ class ProductsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def product_params
-    params.require(:product).permit(:title, :model_number, :brand, :price)
+    params.require(:product).permit(:product_name, :model, :brand, :new_price)
   end
 end
