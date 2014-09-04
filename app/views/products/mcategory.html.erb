@@ -1,7 +1,15 @@
 <div id="content">
   <div class="container">
-    <%= render_breadcrumbs separator: ' > ' %>
     <h1 class="center">検索結果 - UsedX</h1><br>
+    <%= render_breadcrumbs separator: ' > ' %>
+    <section>
+    <h3><%= MCategory.find_by(id: @category).m_category  %></h3>
+    <% SCategory.find_all_by_m_id(@category).each do |sc| %>
+      <div class="col-sm-3">
+        <li><%=link_to sc.s_category, scategory_path(:scat => sc.id) %></li>
+      </div>
+    <% end %>
+    </section>
 
     <form class="form-horizontal" role="form" action="/search" method="get">
       <div class="form-group">

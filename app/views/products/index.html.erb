@@ -1,10 +1,16 @@
-<div class="center hero-unit">
-  <h1>UsedX</h1><br>
-        <ul>
-      <% LCategory.all.each do |lc| %>
-        <li><%=link_to lc.l_category, controller: "products", action: "search", search: lc.l_category %></li>
+<div class="left hero-unit">
+  <h1>中古PC・家電の最安価格を検索！</h1><br>
+  <h2>カテゴリ</h2>
+  <section>
+  <% LCategory.all.each do |lc| %>
+    <div class="col-sm-3">
+      <h3><%=link_to lc.l_category, lcategory_path(:lcat => lc.id) %></h3>
+      <% MCategory.find_all_by_l_id(lc.id).each do |mc| %>
+        <li><%=link_to mc.m_category, mcategory_path(:mcat => mc.id) %></li>
       <% end %>
-        </ul>
+    </div>
+  <% end %>
+  </section><br>
 
   <form class="form-horizontal" role="form" action="/search" method="get">
     <div class="form-group">
@@ -19,7 +25,7 @@
     </div>
   </form>
 
-      <%= will_paginate %>
+  <%= will_paginate %>
   <table class="table">
     <thead>
       <tr>
@@ -42,7 +48,7 @@
     </tbody>
   </table>
 
-      <%= will_paginate %>
+  <%= will_paginate %>
   <br>
 </div>
 <%= link_to 'New Product', new_product_path %>

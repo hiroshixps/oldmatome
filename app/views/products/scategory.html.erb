@@ -1,7 +1,10 @@
 <div id="content">
   <div class="container">
-    <%= render_breadcrumbs separator: ' > ' %>
     <h1 class="center">検索結果 - UsedX</h1><br>
+    <%= render_breadcrumbs separator: ' > ' %>
+    <section>
+    <h3><%= SCategory.find_by(id: @category).s_category  %></h3>
+    </section>
 
     <form class="form-horizontal" role="form" action="/search" method="get">
       <div class="form-group">

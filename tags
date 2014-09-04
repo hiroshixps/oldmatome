@@ -1,0 +1,51 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+ActiveSupport	test/test_helper.rb	/^class ActiveSupport::TestCase$/;"	c
+AddIndexToProductsProductName	db/migrate/20140831083258_add_index_to_products_product_name.rb	/^class AddIndexToProductsProductName < ActiveRecord::Migration$/;"	c
+Application	config/application.rb	/^  class Application < Rails::Application$/;"	c	class:Oldmatome
+ApplicationController	app/controllers/application_controller.rb	/^class ApplicationController < ActionController::Base$/;"	c
+ApplicationHelper	app/helpers/application_helper.rb	/^module ApplicationHelper$/;"	m
+CreateLCategories	db/migrate/20140902171020_create_l_categories.rb	/^class CreateLCategories < ActiveRecord::Migration$/;"	c
+CreateMCategories	db/migrate/20140902171136_create_m_categories.rb	/^class CreateMCategories < ActiveRecord::Migration$/;"	c
+CreateProducts	db/migrate/20140720103008_create_products.rb	/^class CreateProducts < ActiveRecord::Migration$/;"	c
+CreateSCategories	db/migrate/20140902171201_create_s_categories.rb	/^class CreateSCategories < ActiveRecord::Migration$/;"	c
+LCategory	app/models/l_category.rb	/^class LCategory < ActiveRecord::Base$/;"	c
+LCategoryTest	test/models/l_category_test.rb	/^class LCategoryTest < ActiveSupport::TestCase$/;"	c
+MCategory	app/models/m_category.rb	/^class MCategory < ActiveRecord::Base$/;"	c
+MCategoryTest	test/models/m_category_test.rb	/^class MCategoryTest < ActiveSupport::TestCase$/;"	c
+Oldmatome	config/application.rb	/^module Oldmatome$/;"	m
+Product	app/models/product.rb	/^class Product < ActiveRecord::Base$/;"	c
+ProductTest	test/models/product_test.rb	/^class ProductTest < ActiveSupport::TestCase$/;"	c
+ProductsController	app/controllers/products_controller.rb	/^class ProductsController < ApplicationController$/;"	c
+ProductsControllerTest	test/controllers/products_controller_test.rb	/^class ProductsControllerTest < ActionController::TestCase$/;"	c
+ProductsHelper	app/helpers/products_helper.rb	/^module ProductsHelper$/;"	m
+ProductsHelperTest	test/helpers/products_helper_test.rb	/^class ProductsHelperTest < ActionView::TestCase$/;"	c
+SCategory	app/models/s_category.rb	/^class SCategory < ActiveRecord::Base$/;"	c
+SCategoryTest	test/models/s_category_test.rb	/^class SCategoryTest < ActiveSupport::TestCase$/;"	c
+Tasks	lib/tasks/get_apidata.rb	/^class Tasks::GetApidata$/;"	c
+Tasks	lib/tasks/hello_task.rb	/^class Tasks::HelloTask$/;"	c
+change	db/migrate/20140720103008_create_products.rb	/^  def change$/;"	f	class:CreateProducts
+change	db/migrate/20140831083258_add_index_to_products_product_name.rb	/^  def change$/;"	f	class:AddIndexToProductsProductName
+change	db/migrate/20140902171020_create_l_categories.rb	/^  def change$/;"	f	class:CreateLCategories
+change	db/migrate/20140902171136_create_m_categories.rb	/^  def change$/;"	f	class:CreateMCategories
+change	db/migrate/20140902171201_create_s_categories.rb	/^  def change$/;"	f	class:CreateSCategories
+create	app/controllers/products_controller.rb	/^  def create$/;"	f	class:ProductsController
+destroy	app/controllers/products_controller.rb	/^  def destroy$/;"	f	class:ProductsController
+edit	app/controllers/products_controller.rb	/^  def edit$/;"	f	class:ProductsController
+execute	lib/tasks/get_apidata.rb	/^  def self.execute$/;"	F	class:Tasks
+execute	lib/tasks/hello_task.rb	/^  def self.execute$/;"	F	class:Tasks
+index	app/controllers/products_controller.rb	/^  def index$/;"	f	class:ProductsController
+lcategory	app/controllers/products_controller.rb	/^  def lcategory$/;"	f	class:ProductsController
+mcategory	app/controllers/products_controller.rb	/^  def mcategory$/;"	f	class:ProductsController
+new	app/controllers/products_controller.rb	/^  def new$/;"	f	class:ProductsController
+product_params	app/controllers/products_controller.rb	/^  def product_params$/;"	f	class:ProductsController
+scategory	app/controllers/products_controller.rb	/^  def scategory$/;"	f	class:ProductsController
+search	app/controllers/products_controller.rb	/^  def search$/;"	f	class:ProductsController
+search	app/models/product.rb	/^  def self.search(search)$/;"	F	class:Product
+set_product	app/controllers/products_controller.rb	/^  def set_product$/;"	f	class:ProductsController
+show	app/controllers/products_controller.rb	/^  def show$/;"	f	class:ProductsController
+update	app/controllers/products_controller.rb	/^  def update$/;"	f	class:ProductsController

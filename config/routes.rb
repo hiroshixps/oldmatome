@@ -1,6 +1,9 @@
 Oldmatome::Application.routes.draw do
   root  'products#index'
   get "search" => "products#search"
+  get "lcategory" => "products#lcategory"
+  get "mcategory" => "products#mcategory"
+  get "scategory" => "products#scategory"
   resources :products
 
   # The priority is based upon order of creation: first created -> highest priority.

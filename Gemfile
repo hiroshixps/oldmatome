@@ -13,6 +13,7 @@ gem 'turbolinks', '1.1.1'
 gem 'jbuilder', '1.0.2'
 gem "anemone"
 gem "nokogiri"
+gem 'breadcrumbs_on_rails'
 #gem 'unicorn'
 #gem 'therubyracer'
 

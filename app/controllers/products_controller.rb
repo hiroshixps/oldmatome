@@ -1,21 +1,12 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update, :destroy]
 
-  def search
-    @products = Product.search(params[:search]).paginate(page: params[:page])
-#    @keyword = params[:search]
-#    if @keyword.present?
-#      Amazon::Ecs.debug = true
-#        @res = []
-#      for i in 1..3 do
-#        @res0 = Amazon::Ecs.item_search(params[:search], 
-#                                        :item_page => i, :search_index => 'Electronics', :response_group => 'Medium')
-#        @res.push(@res0)
+  add_breadcrumb 'Home', '/'
 
-#      end
-#    else
-#      return
-#    end
+  def search
+    @products = product.search(params[:search]).paginate(page: params[:page])
+    @search_title = params[:search]
+    add_breadcrumb @search_title
   end
 
   def index
@@ -44,6 +35,25 @@ class ProductsController < ApplicationController
         format.json { render json: @product.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def lcategory
+    Logger.new("/tmp/log").debug( params)
+   @category = [params[:lcat]]
+   add_breadcrumb LCategory.find_by_id(@category).l_category
+  end
+
+  def mcategory
+   @category = [params[:mcat]]
+   add_breadcrumb LCategory.find_by_id(MCategory.find_by_id(@category).l_id).l_category, lcategory_path(:lcat => LCategory.find_by_id(MCategory.find_by_id(@category).l_id))
+   add_breadcrumb MCategory.find_by_id(@category).m_category
+  end
+
+  def scategory
+   @category = [params[:scat]]
+   add_breadcrumb LCategory.find_by_id(SCategory.find_by_id(@category).l_id).l_category, lcategory_path(:lcat => LCategory.find_by_id(SCategory.find_by_id(@category).l_id))
+   add_breadcrumb MCategory.find_by_id(SCategory.find_by_id(@category).m_id).m_category, mcategory_path(:mcat => MCategory.find_by_id(SCategory.find_by_id(@category).m_id))
+   add_breadcrumb SCategory.find_by_id(@category).s_category
   end
 
   def update

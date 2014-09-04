@@ -1,7 +1,18 @@
 <div id="content">
   <div class="container">
-    <%= render_breadcrumbs separator: ' > ' %>
     <h1 class="center">検索結果 - UsedX</h1><br>
+    <%= render_breadcrumbs separator: ' > ' %>
+    <section>
+    <h3><%= LCategory.find_by(id: @category).l_category  %></h3>
+    <% MCategory.find_all_by_l_id(@category).each do |mc| %>
+      <div class="col-sm-3">
+        <h3><%=link_to mc.m_category, mcategory_path(:mcat => mc.id) %></h3>
+        <% SCategory.find_all_by_m_id(mc.id).each do |sc| %>
+          <li><%=link_to sc.s_category, scategory_path(:scat => sc.id) %></li>
+        <% end %>
+      </div>
+    <% end %>
+    </section>
 
     <form class="form-horizontal" role="form" action="/search" method="get">
       <div class="form-group">
