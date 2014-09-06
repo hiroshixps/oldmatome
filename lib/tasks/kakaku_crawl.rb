@@ -6,7 +6,7 @@ Bundler.require
 options = {
   :user_agent => "AnemoneCrawler/0.0.1",
   :delay => 0,
-  :depth_limit => 2,
+  :depth_limit => 3,
 }
 @url ='http://kakaku.com/pc/'
 Anemone.crawl(@url, options) do |anemone|
