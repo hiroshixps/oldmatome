@@ -2,7 +2,7 @@
 /* universal */
 
 html {
-  overflow-y: scroll;
+#  overflow-y: scroll;
 }
 
 h1 {
@@ -14,7 +14,17 @@ h1 {
 }
 
 body {
-padding: 60px 0 0; 
+  padding: 60px 0 0; 
+  background-image: image-url("bgimg.png");
+  background-repeat: repeat;
+}
+
+hr{
+    border:none;
+    border-top:dotted 1px #CCC;
+    height:1px;
+    color:#FFFFFF;
+    margin: 0 6 0 6;
 }
 
 section {
@@ -53,6 +63,7 @@ textarea {
   font-size: 26px;
   color: #FFF;
 }
+
 
 /* header
 /*--------------------------------- */
@@ -128,7 +139,7 @@ textarea {
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 20px;
-  background-color: #f7f2f2;
+  background-color: none;
   border: none;
   -webkit-border-radius: 0;
   -moz-border-radius: 0;
@@ -156,7 +167,7 @@ textarea {
   font-weight: bold;
 }
 .panel-footer > ul {
- -webkit-padding-start: 0px;
+  -webkit-padding-start: 0px;
   list-style: none;
 }                  
 

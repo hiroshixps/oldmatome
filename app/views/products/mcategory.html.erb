@@ -1,33 +1,32 @@
 <div id="content">
   <div class="container">
     <%= render_breadcrumbs separator: ' > ' %>
-    <h1 class="center">検索結果 - UsedX</h1><br>
-    <section>
-    <h3><%= MCategory.find_by(id: @category).m_category  %></h3>
-    <% SCategory.find_all_by_m_id(@category).each do |sc| %>
-      <div class="col-sm-3">
-        <li><%=link_to sc.s_category, scategory_path(:scat => sc.id) %></li>
-      </div>
-    <% end %>
-    </section>
-
+    <h1 class="center"><%= MCategory.find_by(id: @category).m_category  %>の一覧</h1><br>
     <form class="form-horizontal" role="form" action="/search" method="get">
       <div class="form-group">
-        <div class="col-sm-8">
-          <input type="search" name="search" class="form-control" placeholder="商品名、型番、メーカー名を入力してください" value="<%= params[:search] %>">
+        <div class="col-sm-offset-1 col-sm-8">
+          <input type="search" name="search" class="form-control" placeholder="商品名、型番、メーカーを入力してください" value="<%= params[:search] %>">
         </div>
-        <div class="col-sm-offset-2 col-sm-2">
+        <div class="col-sm-2">
           <button type="submit" class="btn btn-default">検索</button>
         </div>
       </div>
     </form>
 
+    <div class=" col-sm-2">
+    <h3><%= MCategory.find_by(id: @category).m_category  %></h3>
+    <% SCategory.find_all_by_m_id(@category).each do |sc| %>
+      <div class="clearfix">
+        <li><%=link_to sc.s_category, scategory_path(:scat => sc.id) %></li>
+      </div>
+    <% end %>
+      </div>
 
     <% if @products.present? %>
       <%= will_paginate %>
-      <div class="row">
+      <div class="col-sm-10">
         <% @products.each do |product| %>
-          <div class="col-sm-3">
+          <div class="col-sm-4">
             <div class="panel panel-default">
               <div class="panel-body">
                 <%= link_to product  do %>

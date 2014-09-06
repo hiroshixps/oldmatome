@@ -1,35 +1,35 @@
 <div id="content">
   <div class="container">
     <%= render_breadcrumbs separator: ' > ' %>
-    <h1 class="center">検索結果 - UsedX</h1><br>
-  <form class="form-horizontal" role="form" action="/search" method="get">
-    <div class="form-group">
-      <div class="col-sm-offset-1 col-sm-8">
-        <input type="search" name="search" class="form-control" placeholder="商品名、型番、メーカーを入力してください" value="<%= params[:search] %>">
+    <h1 class="center"><%= LCategory.find_by(id: @category).l_category  %>の一覧</h1><br>
+    <form class="form-horizontal" role="form" action="/search" method="get">
+      <div class="form-group">
+        <div class="col-sm-offset-1 col-sm-8">
+          <input type="search" name="search" class="form-control" placeholder="商品名、型番、メーカーを入力してください" value="<%= params[:search] %>">
+        </div>
+        <div class="col-sm-2">
+          <button type="submit" class="btn btn-default">検索</button>
+        </div>
       </div>
-      <div class="col-sm-2">
-        <button type="submit" class="btn btn-default">検索</button>
-      </div>
-    </div>
-  </form>
+    </form>
 
-    <section>
-    <h3><%= LCategory.find_by(id: @category).l_category  %></h3>
-    <% MCategory.find_all_by_l_id(@category).each do |mc| %>
-      <div class="col-sm-3">
-        <h3><%=link_to mc.m_category, mcategory_path(:mcat => mc.id) %></h3>
-        <% SCategory.find_all_by_m_id(mc.id).each do |sc| %>
-          <li><%=link_to sc.s_category, scategory_path(:scat => sc.id) %></li>
-        <% end %>
-      </div>
-    <% end %>
-    </section>
+    <div class="col-sm-2">
+      <h3><%= LCategory.find_by(id: @category).l_category  %></h3>
+      <% MCategory.find_all_by_l_id(@category).each do |mc| %>
+        <div class="clearfix">
+          <h3><%=link_to mc.m_category, mcategory_path(:mcat => mc.id) %></h3>
+          <% SCategory.find_all_by_m_id(mc.id).each do |sc| %>
+            <li><%=link_to sc.s_category, scategory_path(:scat => sc.id) %></li>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
 
     <% if @products.present? %>
       <%= will_paginate %>
-      <div class="row">
+      <div class="col-sm-10">
         <% @products.each do |product| %>
-          <div class="col-sm-3">
+          <div class="col-sm-4">
             <div class="panel panel-default">
               <div class="panel-body">
                 <%= link_to product  do %>
