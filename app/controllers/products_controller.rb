@@ -39,21 +39,24 @@ class ProductsController < ApplicationController
 
   def lcategory
     Logger.new("/tmp/log").debug( params)
-   @category = [params[:lcat]]
-   add_breadcrumb LCategory.find_by_id(@category).l_category
+    @category = [params[:lcat]]
+    @products = Product.find_all_by_l_category(LCategory.find_by_id(@category).l_category).paginate(page: params[:page])
+    add_breadcrumb LCategory.find_by_id(@category).l_category
   end
 
   def mcategory
-   @category = [params[:mcat]]
-   add_breadcrumb LCategory.find_by_id(MCategory.find_by_id(@category).l_id).l_category, lcategory_path(:lcat => LCategory.find_by_id(MCategory.find_by_id(@category).l_id))
-   add_breadcrumb MCategory.find_by_id(@category).m_category
+    @category = [params[:mcat]]
+    @products = Product.find_all_by_m_category(MCategory.find_by_id(@category).m_category).paginate(page: params[:page])
+    add_breadcrumb LCategory.find_by_id(MCategory.find_by_id(@category).l_id).l_category, lcategory_path(:lcat => LCategory.find_by_id(MCategory.find_by_id(@category).l_id))
+    add_breadcrumb MCategory.find_by_id(@category).m_category
   end
 
   def scategory
-   @category = [params[:scat]]
-   add_breadcrumb LCategory.find_by_id(SCategory.find_by_id(@category).l_id).l_category, lcategory_path(:lcat => LCategory.find_by_id(SCategory.find_by_id(@category).l_id))
-   add_breadcrumb MCategory.find_by_id(SCategory.find_by_id(@category).m_id).m_category, mcategory_path(:mcat => MCategory.find_by_id(SCategory.find_by_id(@category).m_id))
-   add_breadcrumb SCategory.find_by_id(@category).s_category
+    @category = [params[:scat]]
+    @products = Product.find_all_by_s_category(SCategory.find_by_id(@category).s_category).paginate(page: params[:page])
+    add_breadcrumb LCategory.find_by_id(SCategory.find_by_id(@category).l_id).l_category, lcategory_path(:lcat => LCategory.find_by_id(SCategory.find_by_id(@category).l_id))
+    add_breadcrumb MCategory.find_by_id(SCategory.find_by_id(@category).m_id).m_category, mcategory_path(:mcat => MCategory.find_by_id(SCategory.find_by_id(@category).m_id))
+    add_breadcrumb SCategory.find_by_id(@category).s_category
   end
 
   def update

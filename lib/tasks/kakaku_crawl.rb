@@ -6,14 +6,14 @@ Bundler.require
 options = {
   :user_agent => "AnemoneCrawler/0.0.1",
   :delay => 0,
-  :depth_limit => 2,
+  :depth_limit => 3,
 }
-@url ='http://kakaku.com/pc/'
+@url ='http://kakaku.com/camera/'
 Anemone.crawl(@url, options) do |anemone|
 
   anemone.focus_crawl do |page|
     page.links.keep_if { |link|
-      link.to_s.match(/\/spec\/|\/item\//)
+      link.to_s.match(/\/spec\/|\/item\/|\/pc\/|\/kaden\/|\/camera\/|\/keitai\//)
     }
   end
 
@@ -31,8 +31,10 @@ Anemone.crawl(@url, options) do |anemone|
           s_category: page.doc.xpath('//div[@class = "path btmPath"]/*[3]').inner_text,
           spec: page.doc.xpath('//table').inner_text
         )
+        # 中カテゴリは取得できないので、マスタからさがして代入
+        @product.m_category = MCategory.find_by_id(SCategory.find_by_s_category(@product.s_category).m_id).m_category 
         @product.save
-
+          
         p page.url.to_s
         p page.doc.xpath('//h2').inner_text
         p page.doc.xpath('//li[@class = "makerLabel"]/a').inner_text
