@@ -4,7 +4,7 @@ class ProductsController < ApplicationController
   add_breadcrumb 'Home', '/'
 
   def search
-    @products = product.search(params[:search]).paginate(page: params[:page])
+    @products = Product.search(params[:search]).paginate(page: params[:page])
     @search_title = params[:search]
     add_breadcrumb @search_title
   end
@@ -14,6 +14,10 @@ class ProductsController < ApplicationController
   end
 
   def show
+    add_breadcrumb @product.l_category, lcategory_path(:lcat => LCategory.find_by_l_category(@product.l_category).id)
+    add_breadcrumb @product.m_category, mcategory_path(:mcat => MCategory.find_by_m_category(@product.m_category).id)
+    add_breadcrumb @product.s_category, mcategory_path(:mcat => SCategory.find_by_s_category(@product.s_category).id)
+    add_breadcrumb @product.product_name
   end
 
   def new

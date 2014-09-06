@@ -3,10 +3,10 @@
   <head>
     <meta charset="UTF-8">
     <title>UsedX-中古家電の総合価格比較サイト</title>
-  <meta name="keywords" content="中古,中古家電,中古パソコン,中古カメラ,中古携帯,中古エアコン,中古洗濯機,中古テレビ" />
-  <meta name="description" content="中古家電の総合価格比較サイトUsedX! あらゆる中古家電、PC、スマホの価格を簡単比較。ほしい商品を一番安く買えるサイト！" />
-  <meta name="robots" content="index,follow" />
-  <link rel="canonical" href="http://rpssales.com/" />
+    <meta name="keywords" content="中古,中古家電,中古パソコン,中古カメラ,中古携帯,中古エアコン,中古洗濯機,中古テレビ" />
+    <meta name="description" content="中古家電の総合価格比較サイトUsedX! あらゆる中古家電、PC、スマホの価格を簡単比較。ほしい商品を一番安く買えるサイト！" />
+    <meta name="robots" content="index,follow" />
+    <link rel="canonical" href="http://rpssales.com/" />
     <%= stylesheet_link_tag "application", media: "all",
       "data-turbolinks-track" => true %>
     <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
@@ -26,38 +26,34 @@
 
   </script>
   <body>
-    <div id="header">
+    <div class="header">
       <div class="logo">
-        <h1>UsedX</h1>
+        <h1><%= link_to "UsedX", '/', :style=>"color:white;"%></h1>
+        <!-- /logo -->
+
+        <nav  role="navigation">
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <div>
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <span class="navbar-brand visible-xs" href="#">Menu</span>
+          </div>
+
+          <!-- Collect the nav links, forms, and other content for toggling -->
+            <ul>
+              <li class="first"><%= link_to "TOP", '/', id: "logo" %></li>
+              <li><%= link_to "おすすめ商品",    '#' %></li>
+              <li><%= link_to "使い方",    '#' %></li>
+              <li><%= link_to "About", '#' %></li>
+            </ul>
+        </nav>
+        <!-- /nav -->
+
       </div>
-      <!-- /logo -->
-
-      <nav class="navbar navbar-default" role="navigation">
-      <div class="container">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <span class="navbar-brand visible-xs" href="#">Menu</span>
-        </div>
-
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-          <ul class="nav navbar-nav">
-            <li class="first"><%= link_to "TOP", '/', id: "logo" %></li>
-            <li><%= link_to "おすすめ",    '#' %></li>
-            <li><%= link_to "使い方",    '#' %></li>
-            <li><%= link_to "About", '#' %></li>
-          </ul>
-        </div><!-- /.navbar-collapse -->
-      </div>
-      </nav>
-      <!-- /nav -->
-
     </div>
 
     <div class="container">

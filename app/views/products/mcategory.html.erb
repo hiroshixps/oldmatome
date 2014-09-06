@@ -1,7 +1,7 @@
 <div id="content">
   <div class="container">
-    <h1 class="center">検索結果 - UsedX</h1><br>
     <%= render_breadcrumbs separator: ' > ' %>
+    <h1 class="center">検索結果 - UsedX</h1><br>
     <section>
     <h3><%= MCategory.find_by(id: @category).m_category  %></h3>
     <% SCategory.find_all_by_m_id(@category).each do |sc| %>

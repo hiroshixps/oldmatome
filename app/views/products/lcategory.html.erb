@@ -1,7 +1,18 @@
 <div id="content">
   <div class="container">
-    <h1 class="center">検索結果 - UsedX</h1><br>
     <%= render_breadcrumbs separator: ' > ' %>
+    <h1 class="center">検索結果 - UsedX</h1><br>
+  <form class="form-horizontal" role="form" action="/search" method="get">
+    <div class="form-group">
+      <div class="col-sm-offset-1 col-sm-8">
+        <input type="search" name="search" class="form-control" placeholder="商品名、型番、メーカーを入力してください" value="<%= params[:search] %>">
+      </div>
+      <div class="col-sm-2">
+        <button type="submit" class="btn btn-default">検索</button>
+      </div>
+    </div>
+  </form>
+
     <section>
     <h3><%= LCategory.find_by(id: @category).l_category  %></h3>
     <% MCategory.find_all_by_l_id(@category).each do |mc| %>
@@ -13,18 +24,6 @@
       </div>
     <% end %>
     </section>
-
-    <form class="form-horizontal" role="form" action="/search" method="get">
-      <div class="form-group">
-        <div class="col-sm-8">
-          <input type="search" name="search" class="form-control" placeholder="商品名、型番、メーカー名を入力してください" value="<%= params[:search] %>">
-        </div>
-        <div class="col-sm-offset-2 col-sm-2">
-          <button type="submit" class="btn btn-default">検索</button>
-        </div>
-      </div>
-    </form>
-
 
     <% if @products.present? %>
       <%= will_paginate %>
