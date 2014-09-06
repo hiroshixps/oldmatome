@@ -8,44 +8,47 @@ options = {
   :delay => 0,
   :depth_limit => 2,
 }
-@url ='http://kakaku.com/item/K0000654768/'
+@url ='http://kakaku.com/pc/'
 Anemone.crawl(@url, options) do |anemone|
 
   anemone.focus_crawl do |page|
     page.links.keep_if { |link|
-      link.to_s.match(/\/spec\/|\/item\/|\/pc\/|\/kaden\/|\/camera\/|\/keitai\//)
+      link.to_s.match(/\/item\//)   #ここの条件増やすとエラー
     }
   end
 
   anemone.on_every_page do |page|
     if page.doc
       if !Product.find_by(product_name: page.doc.xpath('//h2').inner_text) && page.url.to_s.match(/\/spec\//)
-        p page.url.to_s
-        p page.doc.xpath('//h2').inner_text
-        p page.doc.xpath('//li[@class = "makerLabel"]/a').inner_text
-        p page.doc.xpath('//li[@class = "seriesLabel"]/a').inner_text
-        p page.doc.xpath('//div[@class = "path btmPath"]/*[2]').inner_text
-        p page.doc.xpath('//div[@class = "path btmPath"]/*[3]').inner_text
-        p page.doc.xpath('//div[@id = "imgBox"]/a/img/@src').inner_text
-        p page.doc.xpath('//span[@id = "minPrice"]/a').inner_text.gsub(/[^0-9]/,"").to_i
+        doc = Nokogiri::XML(open(page.url), nil, 'CP932')
+
+        p doc.url.to_s
+        p doc.xpath('//h2').inner_text
+        p doc.xpath('//li[@class = "makerLabel"]/a').inner_text
+        p doc.xpath('//li[@class = "seriesLabel"]/a').inner_text
+        p doc.xpath('//div[@class = "path btmPath"]/*[2]').inner_text
+        p doc.xpath('//div[@class = "path btmPath"]/*[3]').inner_text
+        p doc.xpath('//div[@id = "imgBox"]/a/img/@src').inner_text
+        p doc.xpath('//span[@id = "minPrice"]/a').inner_text.gsub(/[^0-9]/,"").to_i
+       
         @product = Product.new(
-          product_name: page.doc.xpath('//h2').inner_text,
-          brand: page.doc.xpath('//li[@class = "makerLabel"]/a').inner_text,
-          series: page.doc.xpath('//li[@class = "seriesLabel"]/a').inner_text,
-          new_price: page.doc.xpath('//span[@id = "minPrice"]/a').inner_text.gsub(/[^0-9]/,"").to_i,
-          img_url: page.doc.xpath('//div[@id = "imgBox"]/a/img/@src').inner_text,
-          kakaku_url: page.url.to_s,
-          l_category: page.doc.xpath('//div[@class = "path btmPath"]/*[2]').inner_text,
-          s_category: page.doc.xpath('//div[@class = "path btmPath"]/*[3]').inner_text,
-          spec: page.doc.xpath('//table').inner_text
+          product_name: doc.xpath('//h2').inner_text,
+          brand: doc.xpath('//li[@class = "makerLabel"]/a').inner_text,
+          series: doc.xpath('//li[@class = "seriesLabel"]/a').inner_text,
+          new_price: doc.xpath('//span[@id = "minPrice"]/a').inner_text.gsub(/[^0-9]/,"").to_i,
+          img_url: doc.xpath('//div[@id = "imgBox"]/a/img/@src').inner_text,
+          kakaku_url: doc.url.to_s,
+          l_category: doc.xpath('//div[@class = "path btmPath"]/*[2]').inner_text,
+          s_category: doc.xpath('//div[@class = "path btmPath"]/*[3]').inner_text,
+          spec: doc.xpath('//table').inner_text
         )
-       @product.save
+        @product.save
         # 中カテゴリは取得できないので、マスタからさがして代入
-       if @product
-        @product.m_category = MCategory.find_by_id(SCategory.find_by_s_category(@product.s_category).m_id).m_category 
-       @product.save
-       end   
       end
+        if @product
+          @product.m_category = MCategory.find_by_id(SCategory.find_by_s_category(@product.s_category).m_id).m_category 
+          @product.save
+        end   
 
     end
   end
