@@ -14,8 +14,10 @@ CreateMCategories	db/migrate/20140902171136_create_m_categories.rb	/^class Creat
 CreateProducts	db/migrate/20140720103008_create_products.rb	/^class CreateProducts < ActiveRecord::Migration$/;"	c
 CreateSCategories	db/migrate/20140902171201_create_s_categories.rb	/^class CreateSCategories < ActiveRecord::Migration$/;"	c
 LCategory	app/models/l_category.rb	/^class LCategory < ActiveRecord::Base$/;"	c
+LCategory	app/models/lcategory.rb	/^class LCategory < ActiveRecord::Base$/;"	c
 LCategoryTest	test/models/l_category_test.rb	/^class LCategoryTest < ActiveSupport::TestCase$/;"	c
 MCategory	app/models/m_category.rb	/^class MCategory < ActiveRecord::Base$/;"	c
+MCategory	app/models/mcategory.rb	/^class MCategory < ActiveRecord::Base$/;"	c
 MCategoryTest	test/models/m_category_test.rb	/^class MCategoryTest < ActiveSupport::TestCase$/;"	c
 Oldmatome	config/application.rb	/^module Oldmatome$/;"	m
 Product	app/models/product.rb	/^class Product < ActiveRecord::Base$/;"	c
@@ -25,6 +27,7 @@ ProductsControllerTest	test/controllers/products_controller_test.rb	/^class Prod
 ProductsHelper	app/helpers/products_helper.rb	/^module ProductsHelper$/;"	m
 ProductsHelperTest	test/helpers/products_helper_test.rb	/^class ProductsHelperTest < ActionView::TestCase$/;"	c
 SCategory	app/models/s_category.rb	/^class SCategory < ActiveRecord::Base$/;"	c
+SCategory	app/models/scategory.rb	/^class SCategory < ActiveRecord::Base$/;"	c
 SCategoryTest	test/models/s_category_test.rb	/^class SCategoryTest < ActiveSupport::TestCase$/;"	c
 Tasks	lib/tasks/get_apidata.rb	/^class Tasks::GetApidata$/;"	c
 Tasks	lib/tasks/hello_task.rb	/^class Tasks::HelloTask$/;"	c
@@ -38,6 +41,7 @@ destroy	app/controllers/products_controller.rb	/^  def destroy$/;"	f	class:Produ
 edit	app/controllers/products_controller.rb	/^  def edit$/;"	f	class:ProductsController
 execute	lib/tasks/get_apidata.rb	/^  def self.execute$/;"	F	class:Tasks
 execute	lib/tasks/hello_task.rb	/^  def self.execute$/;"	F	class:Tasks
+get_amazonpc	app/controllers/products_controller.rb	/^  def get_amazonpc$/;"	f	class:ProductsController
 index	app/controllers/products_controller.rb	/^  def index$/;"	f	class:ProductsController
 lcategory	app/controllers/products_controller.rb	/^  def lcategory$/;"	f	class:ProductsController
 mcategory	app/controllers/products_controller.rb	/^  def mcategory$/;"	f	class:ProductsController

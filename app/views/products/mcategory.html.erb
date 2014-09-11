@@ -15,7 +15,7 @@
 
     <div class=" col-sm-2">
     <h3><%= MCategory.find_by(id: @category).m_category  %></h3>
-    <% SCategory.find_all_by_m_id(@category).each do |sc| %>
+    <% MCategory.find_by_id(@category).s_categories.each do |sc| %>
       <div class="clearfix">
         <li><%=link_to sc.s_category, scategory_path(:scat => sc.id) %></li>
       </div>

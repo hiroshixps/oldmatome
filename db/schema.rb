@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(version: 20140902171201) do
 
   create_table "m_categories", force: true do |t|
     t.string   "m_category"
-    t.integer  "l_id"
+    t.integer  "l_category_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -48,8 +48,7 @@ ActiveRecord::Schema.define(version: 20140902171201) do
 
   create_table "s_categories", force: true do |t|
     t.string   "s_category"
-    t.integer  "l_id"
-    t.integer  "m_id"
+    t.integer  "m_category_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

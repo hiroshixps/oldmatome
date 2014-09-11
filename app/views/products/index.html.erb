@@ -16,7 +16,7 @@
   <% LCategory.all.each do |lc| %>
     <div class="col-sm-3">
       <h3><%=link_to lc.l_category, lcategory_path(:lcat => lc.id) %></h3>
-      <% MCategory.find_all_by_l_id(lc.id).each do |mc| %>
+      <% lc.m_categories.each do |mc| %>
         <li><%=link_to mc.m_category, mcategory_path(:mcat => mc.id) %></li>
       <% end %>
     </div>
@@ -38,7 +38,7 @@
     <tbody>
       <% @products.each do |product| %>
         <tr class="table table-bordered">
-          <td><%= link_to product.product_name, product %></td>
+          <td><%= link_to product.product_name, product, remote: true %></td>
           <td><%= product.model %></td>
           <td><%= product.img_url %></td>
           <td><%= number_to_currency(product.new_price, :unit => "￥", :precision => 0) %></td>

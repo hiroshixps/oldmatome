@@ -26,20 +26,24 @@
       <thead>
         <tr>
           <th>サイト名</th>
-          <th></th>
+          <th>価格</th>
+          <th>商品リンク</th>
         </tr>
       </thead>
       <tbody>
         <tr>
           <td>Amazon</td>
+          <td><%= @product.get_amazonpc %></td>
           <td></td>
         </tr>
         <tr>
           <td>楽天中古市場</td>
+          <td></td>
           <td><a href="http://hb.afl.rakuten.co.jp/hgc/0e6d5595.f4187c7a.0e6d5596.9b1eb6e7/?pc=http%3a%2f%2fsearch.rakuten.co.jp%2fsearch%2fevent%2f<%=url_encode(@product.product_name.first(20)) %>%2f-%2fev.19-evsitem.%25E3%2580%2590%25E4%25B8%25AD%25E5%258F%25A4%25E3%2580%2591-f.1-s.4-st.A-v.2%3fscid%3daf_link_urltxt&amp;m=http%3a%2f%2fm.rakuten.co.jp%2f" target="_blank">値段を確認！</a></td>
         </tr>
         <tr>
           <td>ヤフオク</td>
+          <td></td>
           <td>リンク</td>
         </tr>
       </tbody>

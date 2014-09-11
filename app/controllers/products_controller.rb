@@ -1,9 +1,9 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update, :destroy]
-       if @product
-        @product.m_category = MCategory.find_by_id(SCategory.find_by_s_category(@product.s_category).m_id).m_category 
-       @product.save
-       end   
+  if @product
+    @product.m_category = MCategory.find_by_id(SCategory.find_by_s_category(@product.s_category).m_id).m_category 
+    @product.save
+  end   
 
   add_breadcrumb 'Home', '/'
 
@@ -55,15 +55,15 @@ class ProductsController < ApplicationController
   def mcategory
     @category = [params[:mcat]]
     @products = Product.find_all_by_m_category(MCategory.find_by_id(@category).m_category).paginate(page: params[:page])
-    add_breadcrumb LCategory.find_by_id(MCategory.find_by_id(@category).l_id).l_category, lcategory_path(:lcat => LCategory.find_by_id(MCategory.find_by_id(@category).l_id))
+    add_breadcrumb MCategory.find_by_id(@category).l_category.l_category, lcategory_path(:lcat => MCategory.find_by_id(@category).l_category.id)
     add_breadcrumb MCategory.find_by_id(@category).m_category
   end
 
   def scategory
     @category = [params[:scat]]
     @products = Product.find_all_by_s_category(SCategory.find_by_id(@category).s_category).paginate(page: params[:page])
-    add_breadcrumb LCategory.find_by_id(SCategory.find_by_id(@category).l_id).l_category, lcategory_path(:lcat => LCategory.find_by_id(SCategory.find_by_id(@category).l_id))
-    add_breadcrumb MCategory.find_by_id(SCategory.find_by_id(@category).m_id).m_category, mcategory_path(:mcat => MCategory.find_by_id(SCategory.find_by_id(@category).m_id))
+    add_breadcrumb SCategory.find_by_id(@category).l_category.l_category, lcategory_path(:lcat => SCategory.find_by_id(@category).l_category.id)
+    add_breadcrumb SCategory.find_by_id(@category).m_category.m_category, mcategory_path(:mcat => SCategory.find_by_id(@category).m_category.id)
     add_breadcrumb SCategory.find_by_id(@category).s_category
   end
 
@@ -85,6 +85,14 @@ class ProductsController < ApplicationController
       format.html { redirect_to products_url }
       format.json { head :no_content }
     end
+  end
+
+  def get_amazonpc
+    @keymaps = @product.product_name
+    @res = Amazon::Ecs.item_search(keyword, 
+                                   :item_page => i, :search_index => 'Electronics', :response_group => 'Medium')
+    @amazon_price = @res.first.get('ItemAttributes/ListPrice/Amount') 
+    return @amazon_price
   end
 
   private
