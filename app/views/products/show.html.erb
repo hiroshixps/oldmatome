@@ -3,7 +3,6 @@
     <%= render_breadcrumbs separator: ' > ' %>
     <p id="notice"><%= notice %></p>
 
-    <h1 class="center"><%= @product.product_name %></h1>
     <div class="row">
       <div class="col-sm-3">
         <div class="panel panel-default">
@@ -12,44 +11,44 @@
               <%= image_tag @product.img_url, {:style => 'border: none;', :class => 'img-rounded'} %>
             <% end %>
           </div>
-          <div class="panel-footer">
-            <ul>
-              <li><%= @product.model %></li>               
-              <li><%= number_to_currency(@product.new_price, :unit => "￥", :precision => 0) %></li>
-              <li><%= @product.product_name %></li>
-            </ul>
-          </div>
         </div>
       </div>
+      <div class="col-sm-9 product">
+        <h1 class="left"><%= @product.product_name %></h1><hr>
+        <div class="col-sm-4 product">
+          <ul>
+            <li>メーカー：<%= @product.brand %></li>               
+            <% if @product.series %>
+              <li>シリーズ名：<%= @product.series %> </li>
+            <% end %>
+            <li class="product_price">新品最安値：<%= number_to_currency(@product.new_price, :unit => "￥", :precision => 0) %></li>
+          </ul>
+        </div>
+        <div class="col-sm-8">
+          <table class="table table-striped">
+            <% get_amazonpc %>
+            <tbody>
+              <tr>
+                <td>Amazon</td>
+                <td id = "amazonpc"><%= @amazon_price ? number_to_currency(@amazon_price, :unit => "￥", :precision => 0) :  "-"%></td>
+                <td><%=@amazon_detail ? (link_to "サイトで確認 ▶︎  ",  @amazon_detail,:target=>["_blank"], :class => "btn btn-warning") : (link_to "類似商品を見る",  @amazon_recommend,:target=>["_blank"], :class => "btn btn-warning" ) %> </td>
+              </tr>
+              <tr>
+                <td>楽天中古市場</td>
+                <td></td>
+                <td><a href="http://hb.afl.rakuten.co.jp/hgc/0e6d5595.f4187c7a.0e6d5596.9b1eb6e7/?pc=http%3a%2f%2fsearch.rakuten.co.jp%2fsearch%2fevent%2f<%=url_encode(@product.product_name.first(20)) %>%2f-%2fev.19-evsitem.%25E3%2580%2590%25E4%25B8%25AD%25E5%258F%25A4%25E3%2580%2591-f.1-s.4-st.A-v.2%3fscid%3daf_link_urltxt&amp;m=http%3a%2f%2fm.rakuten.co.jp%2f" target="_blank" class="btn btn-warning">サイトで確認 ▶︎ </a></td>
+              </tr>
+              <tr>
+                <td>ヤフオク</td>
+                <td></td>
+                <td>リンク</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <%= @product.spec %>
+      <p>
     </div>
-    <table class="table table-striped">
-      <% get_amazonpc %>
-      <thead>
-        <tr>
-          <th>サイト名</th>
-          <th>価格</th>
-          <th>商品リンク</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Amazon</td>
-          <td id = "amazonpc"><%= @amazon_price ? number_to_currency(@amazon_price, :unit => "￥", :precision => 0) :  "-"%></td>
-          <td><%=@amazon_detail ? (link_to "Amazon",  @amazon_detail,:target=>["_blank"]) : "商品がありません" %> </td>
-        </tr>
-        <tr>
-          <td>楽天中古市場</td>
-          <td></td>
-          <td><a href="http://hb.afl.rakuten.co.jp/hgc/0e6d5595.f4187c7a.0e6d5596.9b1eb6e7/?pc=http%3a%2f%2fsearch.rakuten.co.jp%2fsearch%2fevent%2f<%=url_encode(@product.product_name.first(20)) %>%2f-%2fev.19-evsitem.%25E3%2580%2590%25E4%25B8%25AD%25E5%258F%25A4%25E3%2580%2591-f.1-s.4-st.A-v.2%3fscid%3daf_link_urltxt&amp;m=http%3a%2f%2fm.rakuten.co.jp%2f" target="_blank">値段を確認！</a></td>
-        </tr>
-        <tr>
-          <td>ヤフオク</td>
-          <td></td>
-          <td>リンク</td>
-        </tr>
-      </tbody>
-    </table>
-    <%= @product.spec %>
-    <p>
   </div>
 </div>

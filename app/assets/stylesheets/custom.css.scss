@@ -43,6 +43,10 @@ textarea {
   margin-bottom: 10px;
 }
 
+.vcenter {
+  vertical-align: middle;
+margin-top: 60px;
+}
 
 #header {
   padding-top: 5px;
@@ -63,7 +67,10 @@ textarea {
   font-size: 26px;
   color: #FFF;
 }
-
+.row {
+  margin-top: 40px; 
+  margin-bottom: 20px; 
+}
 
 /* header
 /*--------------------------------- */
@@ -135,7 +142,6 @@ textarea {
 /*  panel-box
 /*--------------------------------- */
 .panel {
-  width:250px;
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 20px;
@@ -148,7 +154,7 @@ textarea {
 
 .panel-body {
   text-align: center;
-  height: 180px;
+  height: 150px;
   padding-top: 10px;
   color: #F7ECEC;
   font-size: 18px;
@@ -158,11 +164,10 @@ textarea {
   text-align: center;
   height:100px;
   padding: 18px 15px;
-  background-color: #7E7E7E;
   border-top: none;
+  background-color: #fff;
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
-  color: #fff;
   font-size: 12px;
   font-weight: bold;
 }
@@ -171,6 +176,10 @@ textarea {
   list-style: none;
 }                  
 
+.panel-price{
+  font-size: 18px;
+  color:#FF0000 ;
+}
 /*  button-box
 /*--------------------------------- */
 .button-box{
@@ -185,7 +194,7 @@ textarea {
 }
 
 .btn {
-  width: 80px;
+  width: 120px;
 }
 
 .button-box .btn-default{
@@ -195,4 +204,40 @@ textarea {
   background-color: #7E7E7E;
 }               
 
+.product h1 {
+  border-bottom: 0 none;
+  color: #f68400;
+  font-size: 167%;
+  padding: 0;
+  margin-bottom: 0;
+}
+
+.product ul{
+  list-style: none;
+  padding: 0 ;
+}
+
+.product hr{
+  margin-top: 5px ;
+  margin-bottom: 10px ;
+}
+.product_price{
+  font: bold 22px Arial, Helvetica, sans-serif;
+  color: #333;
+}
+.left-menu{
+  padding-left: 10px;
+  margin-top:79px;
+  background-color: #FFF;
+}
+
+.left-menu ul{
+  padding-left: 5px;
+  margin-bottom: 2px;
+  list-style: none;
+}
+.left-menu h3 > a {
+  font: bold 18px Arial, Helvetica, sans-serif;
+  color: #333;
+}
 

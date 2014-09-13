@@ -13,43 +13,19 @@
       </div>
     </form>
 
-    <div class="col-sm-2">
-      <h3><%= LCategory.find_by(id: @category).l_category  %></h3>
+    <div class="col-sm-2 left-menu">
       <% LCategory.find_by_id(@category).m_categories.each do |mc| %>
         <div class="clearfix">
           <h3><%=link_to mc.m_category, mcategory_path(:mcat => mc.id) %></h3>
           <% mc.s_categories.each do |sc| %>
-            <li><%=link_to sc.s_category, scategory_path(:scat => sc.id) %></li>
+            <ul>
+              <li><%=link_to sc.s_category, scategory_path(:scat => sc.id) %></li>
+            </ul> 
           <% end %>
         </div>
       <% end %>
     </div>
-
-    <% if @products.present? %>
-      <%= will_paginate  :class => 'center' %>
-      <div class="col-sm-10">
-        <% @products.each do |product| %>
-          <div class="col-sm-4">
-            <div class="panel panel-default">
-              <div class="panel-body">
-                <%= link_to product  do %>
-                  <%= image_tag product.img_url, {:style => 'border: none;', :class => 'img-rounded'} %>
-                <% end %>
-              </div>
-              <div class="panel-footer">
-                <ul>
-                  <li><%= product.model %></li>               
-                  <li><%= product.new_price %></li>
-                  <li><%= product.product_name %></li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        <% end %> 
-      <%= will_paginate  :class => 'center' %>
-      </div>
-    <% end %> 
-
+    <%= render 'product_list' %>
 
   </div>
 </div>

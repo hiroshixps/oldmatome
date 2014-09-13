@@ -15,31 +15,7 @@
 
     <h3><%= SCategory.find_by(id: @category).s_category  %></h3>
 
-    <% if @products.present? %>
-      <%= will_paginate %>
-      <div class="row">
-        <% @products.each do |product| %>
-          <div class="col-sm-3">
-            <div class="panel panel-default">
-              <div class="panel-body">
-                <%= link_to product  do %>
-                  <%= image_tag product.img_url, {:style => 'border: none;', :class => 'img-rounded'} %>
-                <% end %>
-              </div>
-              <div class="panel-footer">
-                <ul>
-                  <li><%= product.model %></li>               
-                  <li><%= product.new_price %></li>
-                  <li><%= product.product_name %></li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        <% end %> 
-      </div>
-      <%= will_paginate %>
-    <% end %> 
-
+      <%= render 'product_list' %>
 
   </div>
 </div>
