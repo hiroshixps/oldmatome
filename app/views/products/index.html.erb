@@ -38,7 +38,7 @@
     <tbody>
       <% @products.each do |product| %>
         <tr class="table table-bordered">
-          <td><%= link_to product.product_name, product, remote: true %></td>
+          <td><%= link_to product.product_name, product %></td>
           <td><%= product.model %></td>
           <td><%= product.img_url %></td>
           <td><%= number_to_currency(product.new_price, :unit => "￥", :precision => 0) %></td>

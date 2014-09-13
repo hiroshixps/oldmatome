@@ -41,7 +41,7 @@ destroy	app/controllers/products_controller.rb	/^  def destroy$/;"	f	class:Produ
 edit	app/controllers/products_controller.rb	/^  def edit$/;"	f	class:ProductsController
 execute	lib/tasks/get_apidata.rb	/^  def self.execute$/;"	F	class:Tasks
 execute	lib/tasks/hello_task.rb	/^  def self.execute$/;"	F	class:Tasks
-get_amazonpc	app/controllers/products_controller.rb	/^  def get_amazonpc$/;"	f	class:ProductsController
+get_amazonpc	app/helpers/products_helper.rb	/^  def get_amazonpc$/;"	f	class:ProductsHelper
 index	app/controllers/products_controller.rb	/^  def index$/;"	f	class:ProductsController
 lcategory	app/controllers/products_controller.rb	/^  def lcategory$/;"	f	class:ProductsController
 mcategory	app/controllers/products_controller.rb	/^  def mcategory$/;"	f	class:ProductsController

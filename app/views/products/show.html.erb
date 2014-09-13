@@ -23,6 +23,7 @@
       </div>
     </div>
     <table class="table table-striped">
+      <% get_amazonpc %>
       <thead>
         <tr>
           <th>サイト名</th>
@@ -33,8 +34,8 @@
       <tbody>
         <tr>
           <td>Amazon</td>
-          <td><%= @product.get_amazonpc %></td>
-          <td></td>
+          <td id = "amazonpc"><%= @amazon_price ? number_to_currency(@amazon_price, :unit => "￥", :precision => 0) :  "-"%></td>
+          <td><%=@amazon_detail ? (link_to "Amazon",  @amazon_detail,:target=>["_blank"]) : "商品がありません" %> </td>
         </tr>
         <tr>
           <td>楽天中古市場</td>

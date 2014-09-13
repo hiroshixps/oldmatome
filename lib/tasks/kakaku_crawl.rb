@@ -22,7 +22,7 @@ Anemone.crawl(@url, options) do |anemone|
       if !Product.find_by(product_name: page.doc.xpath('//h2').inner_text) && page.url.to_s.match(/\/spec\//)
         doc = Nokogiri::XML(open(page.url), nil, 'CP932')
 
-        p doc.url.to_s
+        p page.url.to_s
         p doc.xpath('//h2').inner_text
         p doc.xpath('//li[@class = "makerLabel"]/a').inner_text
         p doc.xpath('//li[@class = "seriesLabel"]/a').inner_text
@@ -37,16 +37,16 @@ Anemone.crawl(@url, options) do |anemone|
           series: doc.xpath('//li[@class = "seriesLabel"]/a').inner_text,
           new_price: doc.xpath('//span[@id = "minPrice"]/a').inner_text.gsub(/[^0-9]/,"").to_i,
           img_url: doc.xpath('//div[@id = "imgBox"]/a/img/@src').inner_text,
-          kakaku_url: doc.url.to_s,
-          l_category: doc.xpath('//div[@class = "path btmPath"]/*[2]').inner_text,
+          kakaku_url: page.url.to_s,
           s_category: doc.xpath('//div[@class = "path btmPath"]/*[3]').inner_text,
-          spec: doc.xpath('//table').inner_text
+          spec: doc.xpath('//table[@class = "tblBorderGray mTop15"]/tbody/tr').inner_text
         )
         @product.save
         # 中カテゴリは取得できないので、マスタからさがして代入
       end
         if @product
-          @product.m_category = MCategory.find_by_id(SCategory.find_by_s_category(@product.s_category).m_id).m_category 
+          @product.m_category = SCategory.find_by_s_category(@product.s_category).m_category.m_category 
+          @product.l_category = SCategory.find_by_s_category(@product.s_category).l_category.l_category 
           @product.save
         end   
 

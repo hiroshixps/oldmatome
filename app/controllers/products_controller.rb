@@ -87,13 +87,6 @@ class ProductsController < ApplicationController
     end
   end
 
-  def get_amazonpc
-    @keymaps = @product.product_name
-    @res = Amazon::Ecs.item_search(keyword, 
-                                   :item_page => i, :search_index => 'Electronics', :response_group => 'Medium')
-    @amazon_price = @res.first.get('ItemAttributes/ListPrice/Amount') 
-    return @amazon_price
-  end
 
   private
   # Use callbacks to share common setup or constraints between actions.

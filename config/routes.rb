@@ -4,7 +4,7 @@ Oldmatome::Application.routes.draw do
   get "lcategory" => "products#lcategory"
   get "mcategory" => "products#mcategory"
   get "scategory" => "products#scategory"
-  post "get_amazonpc" => "products#amazonpc"
+  get 'get_amazonpc' => 'products#amazonpc'
   resources :products
 
   # The priority is based upon order of creation: first created -> highest priority.
