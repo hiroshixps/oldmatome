@@ -47,8 +47,23 @@
           </table>
         </div>
       </div>
-      <%= @product.spec %>
-      <p>
+
+      <table class=" table table-bordered table-striped col-sm-10">
+        <tbody>
+          <tr>
+            <th>スペック</th>
+          </tr>
+          <% @product.spec.each_slice(2) do |s| %>
+            <tr>
+              <th><%= s[0].to_a.first %></td>
+              <td><%= s[0].to_a.second %></td>
+              <th><%= s[1].to_a.first %></td>
+              <td><%= s[1].to_a.second %></td>
+            </tr>
+          <% end %>
+        </tbody>
+
+      </table>
     </div>
   </div>
 </div>
