@@ -1,0 +1,38 @@
+require 'active_resource'
+require 'nokogiri'
+require 'net/http'
+require 'uri'
+require 'json'
+
+class Rakuten < ActiveResource::Base
+  self.site     = "http://api.rakuten.co.jp" #リソースのURL
+  self.format  = :json
+  AFFILIATE_ID  = "i131468e2.e5e051bb.131468e3.380b0f28"
+  DEVELOPER_ID  = "1094593437835155159"
+  VERSION       = "2010-09-15"
+  FROM          = "/rws/3.0/json"
+
+  def self.item_search(keyword, genre_id=0, page=1)
+    self.find(
+      :one,
+      :from => FROM,
+      :params => {
+        :developerId  =>  DEVELOPER_ID,
+        :affiliateId  =>  AFFILIATE_ID,
+        :version      =>  VERSION,
+        :operation    =>  "ItemSearch",
+        :genreId      =>  genre_id,
+        :page         =>  page,
+        :keyword      =>  keyword,
+      }
+    )
+  end
+end
+
+  @items = Rakuten.item_search("aaaaaaaaaaaaaaaaaaaaaaaa")
+#  test =  @items.doc.xpath('//affiliateUrl').inner_text
+#  @res = @items.items.first.get('Item') 
+#  doc = Nokogiri::XML(@items)
+#  doc1 = JSON.parse(@items)
+  p "ccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+  p @items

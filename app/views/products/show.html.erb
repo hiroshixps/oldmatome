@@ -27,6 +27,7 @@
         <div class="col-sm-8">
           <table class="table table-striped">
             <% get_amazonpc %>
+            <% get_rakutenpc %>
             <tbody>
               <tr>
                 <td>Amazon</td>
@@ -35,8 +36,8 @@
               </tr>
               <tr>
                 <td>楽天中古市場</td>
-                <td></td>
-                <td><a href="http://hb.afl.rakuten.co.jp/hgc/0e6d5595.f4187c7a.0e6d5596.9b1eb6e7/?pc=http%3a%2f%2fsearch.rakuten.co.jp%2fsearch%2fevent%2f<%=url_encode(@product.product_name.first(20)) %>%2f-%2fev.19-evsitem.%25E3%2580%2590%25E4%25B8%25AD%25E5%258F%25A4%25E3%2580%2591-f.1-s.4-st.A-v.2%3fscid%3daf_link_urltxt&amp;m=http%3a%2f%2fm.rakuten.co.jp%2f" target="_blank" class="btn btn-warning">サイトで確認 ▶︎ </a></td>
+                <td id = "amazonpc"><%= @rakuten_price ? number_to_currency(@rakuten_price, :unit => "￥", :precision => 0) :  "商品がありません"%></td>
+                <td><%=@rakuten_detail ? (link_to "サイトで確認 ▶︎  ",  @rakuten_detail,:target=>["_blank"], :class => "btn btn-warning") : (link_to "類似商品を見る",  @rakuten_recommend,:target=>["_blank"], :class => "btn btn-warning" ) %> </td>
               </tr>
               <tr>
                 <td>ヤフオク</td>

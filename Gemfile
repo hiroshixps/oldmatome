@@ -4,7 +4,6 @@ gem 'rails', '4.0.5'
 gem 'bootstrap-sass', '3.2.0'
 gem 'amazon-ecs'
 gem 'will_paginate'
-gem 'bootstrap-will_paginate'
 gem 'sass-rails', '4.0.2'
 gem 'uglifier', '2.1.1'
 gem 'coffee-rails', '4.0.1'
@@ -14,6 +13,8 @@ gem 'jbuilder', '1.0.2'
 gem "anemone"
 gem "nokogiri"
 gem 'breadcrumbs_on_rails'
+gem 'activeresource'
+gem 'rakuten'
 #gem 'unicorn'
 #gem 'therubyracer'
 
