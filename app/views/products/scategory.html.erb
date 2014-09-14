@@ -11,11 +11,7 @@
           <button type="submit" class="btn btn-default">検索</button>
         </div>
       </div>
-    </form>
-
-    <h3><%= SCategory.find_by(id: @category).s_category  %></h3>
-
-      <%= render 'product_list' %>
-
+    </form><br>
+      <%= render 'product_list_top' %>
   </div>
 </div>

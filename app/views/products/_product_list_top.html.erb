@@ -1,0 +1,26 @@
+
+<% if @products.present? %>
+  <%= will_paginate  :class => 'center' %>
+  <div class="col-sm-12">
+    <% @products.each do |product| %>
+      <div class="col-sm-3 img-rounded">
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <%= link_to product  do %>
+              <%= image_tag product.img_url, {:style => 'border: none;', :class => 'img-rounded'} %>
+            <% end %>
+          </div>
+          <div class="panel-footer">
+            <ul>
+              <li><%= product.model %></li>               
+              <li class="panel-price"><%= number_to_currency(product.new_price, :unit => "￥", :precision => 0) %></li>
+              <li><%= product.product_name %></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    <% end %> 
+  </div>
+    <%= will_paginate  :class => 'center' %>
+<% end %> 
+

@@ -2,7 +2,7 @@
 /* universal */
 
 html {
-#  overflow-y: scroll;
+  #  overflow-y: scroll;
 }
 
 h1 {
@@ -13,6 +13,11 @@ h1 {
   line-height: 120%;
 }
 
+.description h2{
+  padding:2px 10px 0px 20px;
+  margin-top: 5px;
+  font-size: 100%;
+}
 body {
   padding: 60px 0 0; 
   background-image: image-url("bgimg.png");
@@ -20,11 +25,11 @@ body {
 }
 
 hr{
-    border:none;
-    border-top:dotted 1px #CCC;
-    height:1px;
-    color:#FFFFFF;
-    margin: 0 6 0 6;
+  border:none;
+  border-top:dotted 1px #CCC;
+  height:1px;
+  color:#FFFFFF;
+  margin: 0 6 0 6;
 }
 
 section {
@@ -45,7 +50,7 @@ textarea {
 
 .vcenter {
   vertical-align: middle;
-margin-top: 60px;
+  margin-top: 60px;
 }
 
 #header {
@@ -206,7 +211,7 @@ margin-top: 60px;
 
 .product h1 {
   border-bottom: 0 none;
-  color: #f68400;
+  color: #FE3800;
   font-size: 167%;
   padding: 0;
   margin-bottom: 0;
@@ -228,6 +233,7 @@ margin-top: 60px;
 .left-menu{
   padding-left: 10px;
   margin-top:79px;
+  padding-bottom:20px;
   background-color: #FFF;
 }
 
@@ -241,3 +247,26 @@ margin-top: 60px;
   color: #333;
 }
 
+.top-menu{
+  padding-left: 10px;
+  padding-bottom: 20px;
+  background-color: #FFF;
+}
+
+.top-menu ul{
+  padding-left: 5px;
+  margin-bottom: 2px;
+  list-style: none;
+}
+
+.top-menu h3 > a {
+  font: bold 18px Arial, Helvetica, sans-serif;
+  color: #333;
+}
+.spec tbody > tr > th, td{
+  padding:5px;
+}
+
+.spec{
+  margin-top: 30px;
+}

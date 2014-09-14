@@ -1,53 +1,33 @@
 <div class="left hero-unit">
   <h1>中古PC・家電の最安価格を検索！</h1><br>
-  <form class="form-horizontal" role="form" action="/search" method="get">
   <%= image_tag("search_girl.png", :class => "col-sm-2 img-responsive") %>
+  <form class="form-horizontal col-sm-10" role="form" action="/search" method="get">
     <div class="form-group">
-      <div class=" col-sm-6 vcenter">
+      <div class=" col-sm-10 vcenter">
         <input type="search" name="search" class="form-control" placeholder="商品名、型番、メーカーを入力してください" value="<%= params[:search] %>">
       </div>
       <div class="col-sm-2 vcenter">
         <button type="submit" class="btn btn-default btn-warning">検索</button>
       </div>
     </div>
-  </form><hr>
-
+  </form>
+  <div class="clearfix col-sm-offset-2 description">
+      <h2>新品価格と比較して、お得な中古家電を探そう！</h2>
+  </div><hr>
   <h2>カテゴリ</h2>
-  <section>
+  <section class = "top-menu">
   <% LCategory.all.each do |lc| %>
     <div class="col-sm-3">
       <h3><%=link_to lc.l_category, lcategory_path(:lcat => lc.id) %></h3>
-      <% lc.m_categories.each do |mc| %>
-        <li><%=link_to mc.m_category, mcategory_path(:mcat => mc.id) %></li>
-      <% end %>
+      <ul>
+        <% lc.m_categories.each do |mc| %>
+          <li><%=link_to mc.m_category, mcategory_path(:mcat => mc.id) %></li>
+        <% end %>
+      </ul>
     </div>
   <% end %>
-  </section><br>
+  </section>
 
-
-  <%= will_paginate %>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>商品名</th>
-        <th>型番</th>
-        <th>ブランド</th>
-        <th>価格</th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <% @products.each do |product| %>
-        <tr class="table table-bordered">
-          <td><%= link_to product.product_name, product %></td>
-          <td><%= product.model %></td>
-          <td><%= product.img_url %></td>
-          <td><%= number_to_currency(product.new_price, :unit => "￥", :precision => 0) %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-
-  <%= will_paginate %>
+  <%= render 'product_list_top' %>
   <br>
 </div>

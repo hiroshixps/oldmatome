@@ -30,7 +30,7 @@
             <tbody>
               <tr>
                 <td>Amazon</td>
-                <td id = "amazonpc"><%= @amazon_price ? number_to_currency(@amazon_price, :unit => "￥", :precision => 0) :  "-"%></td>
+                <td id = "amazonpc"><%= @amazon_price ? number_to_currency(@amazon_price, :unit => "￥", :precision => 0) :  "商品がありません"%></td>
                 <td><%=@amazon_detail ? (link_to "サイトで確認 ▶︎  ",  @amazon_detail,:target=>["_blank"], :class => "btn btn-warning") : (link_to "類似商品を見る",  @amazon_recommend,:target=>["_blank"], :class => "btn btn-warning" ) %> </td>
               </tr>
               <tr>
@@ -48,10 +48,10 @@
         </div>
       </div>
 
-      <table class=" table table-bordered table-striped col-sm-10">
+      <table class="table-bordered table-striped col-sm-10 spec">
         <tbody>
           <tr>
-            <th>スペック</th>
+            <th colspan="4" class="center">商品仕様</th>
           </tr>
           <% @product.spec.each_slice(2) do |s| %>
             <tr>
