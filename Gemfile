@@ -14,17 +14,17 @@ gem "anemone"
 gem "nokogiri"
 gem 'breadcrumbs_on_rails'
 gem 'activeresource'
-gem 'rakuten'
+gem 'yahoo-api'
 #gem 'unicorn'
 #gem 'therubyracer'
 
 group :development do
   gem 'sqlite3', '1.3.8'
   gem 'rails-footnotes'
-#  gem 'capistrano'
-#  gem 'capistrano_colors'
-#  gem 'capistrano-ext'
-#  gem 'capistrano_rsync_with_remote_cache'
+  #  gem 'capistrano'
+  #  gem 'capistrano_colors'
+  #  gem 'capistrano-ext'
+  #  gem 'capistrano_rsync_with_remote_cache'
 end
 
 group :doc do

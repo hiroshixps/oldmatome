@@ -1,7 +1,6 @@
 # Load the Rails application.
 require File.expand_path('../application', __FILE__)
 require 'amazon/ecs'
-require 'rakuten'
 
 Amazon::Ecs.options = {
   :associate_tag =>     'hiroshixps-22',

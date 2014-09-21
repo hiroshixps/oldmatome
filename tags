@@ -41,6 +41,8 @@ execute	lib/tasks/get_apidata.rb	/^  def self.execute$/;"	F	class:Tasks
 execute	lib/tasks/hello_task.rb	/^  def self.execute$/;"	F	class:Tasks
 get_amazonpc	app/helpers/products_helper.rb	/^  def get_amazonpc$/;"	f	class:ProductsHelper
 get_rakutenpc	app/helpers/products_helper.rb	/^  def get_rakutenpc$/;"	f	class:ProductsHelper
+get_yahoopc	app/helpers/products_helper.rb	/^  def get_yahoopc$/;"	f	class:ProductsHelper
+get_yahoopc	app/helpers/yahoo_api.rb	/^def get_yahoopc$/;"	f
 index	app/controllers/products_controller.rb	/^  def index$/;"	f	class:ProductsController
 item_search	app/models/rakuten.rb	/^  def self.item_search(keyword, genre_id=0, page=1)$/;"	F	class:Rakuten
 lcategory	app/controllers/products_controller.rb	/^  def lcategory$/;"	f	class:ProductsController

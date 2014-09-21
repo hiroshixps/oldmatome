@@ -27,22 +27,28 @@
         <div class="col-sm-8">
           <table class="table table-striped">
             <% get_amazonpc %>
-            <% get_rakutenpc %>
+            <% get_yahoopc %>
             <tbody>
+          <tr>
+            <th colspan="4" class="left">中古最安価格一覧</th>
+          </tr>
               <tr>
                 <td>Amazon</td>
                 <td id = "amazonpc"><%= @amazon_price ? number_to_currency(@amazon_price, :unit => "￥", :precision => 0) :  "商品がありません"%></td>
-                <td><%=@amazon_detail ? (link_to "サイトで確認 ▶︎  ",  @amazon_detail,:target=>["_blank"], :class => "btn btn-warning") : (link_to "類似商品を見る",  @amazon_recommend,:target=>["_blank"], :class => "btn btn-warning" ) %> </td>
+                <td><%=@amazon_detail ? (link_to "商品詳細 ▶︎  ",  @amazon_detail,:target=>["_blank"], :class => "btn btn-warning") : (link_to "類似商品を見る",  @amazon_recommend,:target=>["_blank"], :class => "btn btn-warning" ) %> </td>
+                <td></td>
               </tr>
               <tr>
                 <td>楽天中古市場</td>
                 <td id = "amazonpc"><%= @rakuten_price ? number_to_currency(@rakuten_price, :unit => "￥", :precision => 0) :  "商品がありません"%></td>
-                <td><%=@rakuten_detail ? (link_to "サイトで確認 ▶︎  ",  @rakuten_detail,:target=>["_blank"], :class => "btn btn-warning") : (link_to "類似商品を見る",  @rakuten_recommend,:target=>["_blank"], :class => "btn btn-warning" ) %> </td>
+                <td><a href= "http://search.rakuten.co.jp/search/mall/<%=@product.product_name%>/"  class ="btn btn-warning">rakuten</a></td>
+                <td></td>
               </tr>
               <tr>
                 <td>ヤフオク</td>
+                <td id = "amazonpc"><a href= <%= @yahoo_url %> ><%= @yahoo_price ? number_to_currency(@yahoo_price, :unit => "￥", :precision => 0) :  "商品がありません"%></a></td>
                 <td></td>
-                <td>リンク</td>
+                <td></td>
               </tr>
             </tbody>
           </table>
