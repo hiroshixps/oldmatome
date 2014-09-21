@@ -17,6 +17,7 @@ gem 'activeresource'
 gem 'yahoo-api'
 gem 'addressable', require: 'addressable/uri'
 gem 'autoprefixer-rails'
+gem 'hpricot'
 #gem 'unicorn'
 #gem 'therubyracer'
 

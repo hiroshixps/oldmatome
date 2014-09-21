@@ -6,7 +6,7 @@ Bundler.require
 options = {
   :user_agent => "AnemoneCrawler/0.0.1",
   :delay => 0,
-  :depth_limit => 3,
+  :depth_limit => 5,
 }
 @url ='http://kakaku.com/pc/'
 Anemone.crawl(@url, options) do |anemone|
@@ -18,51 +18,47 @@ Anemone.crawl(@url, options) do |anemone|
   end
 
   anemone.on_every_page do |page|
-    if page.doc
-      if !Product.find_by(product_name: page.doc.xpath('//h2').inner_text) && page.url.to_s.match(/\/spec\//)
-        #   doc = Nokogiri::XML(open(page.url), nil, 'CP932')
+    if page.url.to_s.match(/\/spec\/$/)
+     doc = Nokogiri::HTML(open(page.url.to_s), nil, 'CP932')
 
-        p page.url.to_s
-        p page.doc.xpath('//h2').inner_text
-        p page.doc.xpath('//li[@class = "makerLabel"]/a').inner_text
-        p page.doc.xpath('//li[@class = "seriesLabel"]/a').inner_text
-        p page.doc.xpath('//div[@class = "path btmPath"]/*[2]').inner_text
-        p page.doc.xpath('//div[@class = "path btmPath"]/*[3]').inner_text
-        p page.doc.xpath('//div[@id = "imgBox"]/a/img/@src').inner_text
-        p page.doc.xpath('//span[@id = "minPrice"]/a').inner_text.gsub(/[^0-9]/,"").to_i
-#        p page.doc.xpath('//div[@id="mainLeft"]/table[@class = "tblBorderGray mTop15"]/tr').text
+      p page.url.to_s
+      #     p doc.xpath('//h2').inner_text
+      #     p doc.xpath('//li[@class = "makerLabel"]/a').inner_text
+      #     p doc.xpath('//li[@class = "seriesLabel"]/a').inner_text
+      #     p doc.xpath('//div[@class = "path btmPath"]/*[2]').inner_text
+      #     p doc.xpath('//div[@class = "path btmPath"]/*[3]').inner_text
+      #     p doc.xpath('//div[@id = "imgBox"]/a/img/@src').inner_text
+      #     p doc.xpath('//span[@id = "minPrice"]/a').inner_text.gsub(/[^0-9]/,"").to_i
+      #        p page.doc.xpath('//div[@id="mainLeft"]/table[@class = "tblBorderGray mTop15"]/tr').text
 
-        @product = Product.new(
-          product_name: page.doc.xpath('//h2').inner_text,
-          brand: page.doc.xpath('//li[@class = "makerLabel"]/a').inner_text,
-          series: page.doc.xpath('//li[@class = "seriesLabel"]/a').inner_text,
-          new_price: page.doc.xpath('//span[@id = "minPrice"]/a').inner_text.gsub(/[^0-9]/,"").to_i,
-          img_url: page.doc.xpath('//div[@id = "imgBox"]/a/img/@src').inner_text,
-          kakaku_url: page.url.to_s,
-          s_category: page.doc.xpath('//div[@class = "path btmPath"]/*[3]').inner_text
-        )
+      @product = Product.new(
+        product_name: doc.xpath('//h2').inner_text,
+        brand: doc.xpath('//li[@class = "makerLabel"]/a').inner_text,
+        series: doc.xpath('//li[@class = "seriesLabel"]/a').inner_text,
+        new_price: doc.xpath('//span[@id = "minPrice"]/a').inner_text.gsub(/[^0-9]/,"").to_i,
+        img_url: doc.xpath('//div[@id = "imgBox"]/a/img/@src').inner_text,
+        kakaku_url: page.url.to_s,
+        s_category: doc.xpath('//div[@class = "path btmPath"]/*[3]').inner_text
+      )
 
-        @th = page.doc.xpath('//div[@id="mainLeft"]/table[@class = "tblBorderGray mTop15"]/tr/th[@class = "itemviewColor03b textL"]')
-        @td = page.doc.xpath('//div[@id="mainLeft"]/table[@class = "tblBorderGray mTop15"]/tr/td')
+      @th = doc.xpath('//div[@id="mainLeft"]/table[@class = "tblBorderGray mTop15"]/tr/th[@class = "itemviewColor03b textL"]')
+      @td = doc.xpath('//div[@id="mainLeft"]/table[@class = "tblBorderGray mTop15"]/tr/td')
 
-        for i in 0..@th.length-1  do 
-          @product.spec[ @th[i].inner_text] = @td[i].inner_text   
-#          p @product.spec
-        end
-        @product.save
-
-        # 中カテゴリは取得できないので、マスタからさがして代入
+      for i in 0..@th.length-1  do 
+        @product.spec[ @th[i].inner_text] = @td[i].inner_text   
+        #          p @product.spec
       end
-      if @product
-        @product.m_category = SCategory.find_by_s_category(@product.s_category).m_category.m_category 
-        @product.l_category = SCategory.find_by_s_category(@product.s_category).l_category.l_category 
-        @product.save
-      end   
-
+      @product.save
     end
   end
-
 end
+
+      # 中カテゴリは取得できないので、マスタからさがして代入
+Product.all.each do |product| 
+  product.m_category = SCategory.find_by_s_category(@product.s_category).m_category.m_category 
+  product.l_category = SCategory.find_by_s_category(@product.s_category).l_category.l_category 
+  product.save
+end   
 
 #@url2 = @url + "spec/#tab"
 #Anemone.crawl(@url2, options) do |anemone|
