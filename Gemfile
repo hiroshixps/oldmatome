@@ -15,6 +15,7 @@ gem "nokogiri"
 gem 'breadcrumbs_on_rails'
 gem 'activeresource'
 gem 'yahoo-api'
+gem 'addressable', require: 'addressable/uri'
 #gem 'unicorn'
 #gem 'therubyracer'
 

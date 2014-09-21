@@ -48,6 +48,10 @@ textarea {
   margin-bottom: 10px;
 }
 
+.pricebox > tbody > tr > td {
+  vertical-align: middle;
+}
+
 .vcenter {
   vertical-align: middle;
   margin-top: 60px;
@@ -199,7 +203,7 @@ textarea {
 }
 
 .btn {
-  width: 120px;
+  width: auto;
 }
 
 .button-box .btn-default{
