@@ -14,32 +14,19 @@
       </div>
     </form>
 
-
-    <% if @products.present? %>
-      <%= will_paginate %>
-      <div class="row">
-        <% @products.each do |product| %>
-          <div class="col-sm-3">
-            <div class="panel panel-default">
-              <div class="panel-body">
-                <%= link_to product  do %>
-                  <%= image_tag product.img_url, {:style => 'border: none;', :class => 'img-rounded'} %>
-                <% end %>
-              </div>
-              <div class="panel-footer">
-                <ul>
-                  <li><%= product.model %></li>               
-                  <li><%= product.new_price %></li>
-                  <li><%= product.product_name %></li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        <% end %> 
+    <div class="col-sm-2 left-menu">
+      <% LCategory.all.each do |lc| %>
+        <div class="clearfix">
+          <h3><%=link_to lc.l_category, lcategory_path(:lcat => lc.id) %></h3>
+          <ul>
+            <% lc.m_categories.each do |mc| %>
+              <li><%=link_to mc.m_category, mcategory_path(:mcat => mc.id) %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
       </div>
-      <%= will_paginate %>
-    <% end %> 
-
+    <%= render 'product_list' %>
 
   </div>
 </div>

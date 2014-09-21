@@ -10,13 +10,15 @@ module ProductsHelper
     enc_word = URI.encode(@product.product_name)
     url1 = "http://auctions.yahooapis.jp/AuctionWebService/V2/search?appid=#{YAHOO_API_ID}&query=#{enc_word}"
     #yahoo shopping用
-   # url2 = "http://shopping.yahooapis.jp/ShoppingWebService/V1/itemSearch?appid=#{YAHOO_API_ID}&query=#{enc_word}"
+    # url2 = "http://shopping.yahooapis.jp/ShoppingWebService/V1/itemSearch?appid=#{YAHOO_API_ID}&query=#{enc_word}"
     doc1 = Nokogiri::XML(open(url1))
-   # doc2 = Nokogiri::XML(open(url2))
-    @yahoo_price = doc1.xpath('//xmlns:CurrentPrice').first.text
-    @yahoo_detail = doc1.xpath('//xmlns:AuctionItemUrl').first.text
-   # @yahoos_price = doc2.xpath('//xmlns:Price').first.text
-   # @yahoos_detail = doc2.xpath('//xmlns:Url').first.text
+    # doc2 = Nokogiri::XML(open(url2))
+    if @yahoo_price = doc1.xpath('//xmlns:CurrentPrice').first
+      @yahoo_price = doc1.xpath('//xmlns:CurrentPrice').first.text
+      @yahoo_detail = doc1.xpath('//xmlns:AuctionItemUrl').first.text
+      # @yahoos_price = doc2.xpath('//xmlns:Price').first.text
+      # @yahoos_detail = doc2.xpath('//xmlns:Url').first.text
+    end
 
   end
 
@@ -38,9 +40,10 @@ module ProductsHelper
   def get_rakutenpc
     enc_key = URI.escape(@product.product_name.gsub(/\[|\]/, " "))
     url = "http://search.rakuten.co.jp/search/mall/#{enc_key}/"
-    p url
     doc = Nokogiri::HTML(open(url), nil, "UTF-8" )
-    @rakuten_price = doc.xpath('//div[@id="ratArea"]/div/div[@class = "rsrSResultItemInfo"]/p[@class ="price"]/a').first.text.gsub(/[^0-9]/,"").to_i
-    @rakuten_detail = doc.xpath('//div[@id="ratArea"]/div/div[@class = "rsrSResultItemInfo"]/p[@class ="price"]/a/@href').first.text
+    if @rakuten_detail = doc.xpath('//div[@id="ratArea"]/div/div[@class = "rsrSResultItemInfo"]/p[@class ="price"]/a/@href').first
+      @rakuten_price = doc.xpath('//div[@id="ratArea"]/div/div[@class = "rsrSResultItemInfo"]/p[@class ="price"]/a').first.text.gsub(/[^0-9]/,"").to_i
+      @rakuten_detail = doc.xpath('//div[@id="ratArea"]/div/div[@class = "rsrSResultItemInfo"]/p[@class ="price"]/a/@href').first.text
+    end
   end
 end

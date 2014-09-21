@@ -1,12 +1,14 @@
 
 <% if @products.present? %>
-  <%= will_paginate  :class => 'center' %>
+  <span class="apple_pagination" >
+    <%= will_paginate  :class => 'center' %>
+  </span>
   <div class="col-sm-12">
     <% @products.each do |product| %>
       <div class="col-sm-3 img-rounded">
         <div class="panel panel-default">
           <div class="panel-body">
-            <%= link_to product  do %>
+            <%= link_to product,data: { no_turbolink: true }  do %>
               <%= image_tag product.img_url, {:style => 'border: none;', :class => 'img-rounded'} %>
             <% end %>
           </div>
@@ -21,6 +23,8 @@
       </div>
     <% end %> 
   </div>
+  <span class="apple_pagination" >
     <%= will_paginate  :class => 'center' %>
+  </span>
 <% end %> 
 

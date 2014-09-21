@@ -35,20 +35,20 @@
               <tr>
                 <td>Amazon</td>
                 <td id = "amazonpc"><%= @amazon_price ? number_to_currency(@amazon_price, :unit => "￥", :precision => 0) :  "商品がありません"%></td>
-                <td><%=@amazon_detail ? (link_to "商品詳細を見る",  @amazon_detail,:target=>["_blank"], :class => "btn btn-warning") : (link_to "類似商品を見る",  @amazon_recommend,:target=>["_blank"], :class => "btn btn-warning" ) %> </td>
-                <td><a href= "http://www.amazon.co.jp/s/field-keywords=<%=@product.product_name%>/"  target ="_blank" ><span class="glyphicon glyphicon-th-list"></span>商品一覧を見る</a></td>
+                <td><%=@amazon_detail ? (link_to "商品詳細を見る",  @amazon_detail,:target=>["_blank"], :class => "btn btn-warning") : "---" %> </td>
+                <td><a href= "http://www.amazon.co.jp/s/field-keywords=<%=@product.product_name%>/"  target ="_blank" ><span class="glyphicon glyphicon-th-list"></span><%= @amazon_price ?  " 商品一覧をみる": " 類似商品を確認する"%></a></td>
               </tr>
               <tr>
                 <td>楽天中古市場</td>
                 <td id = "amazonpc"><%= @rakuten_price ? number_to_currency(@rakuten_price, :unit => "￥", :precision => 0) :  "商品がありません"%></td>
-                <td><%=@rakuten_detail ? (link_to "商品詳細を見る ",  @rakuten_detail,:target=>["_blank"], :class => "btn btn-warning") : (link_to "類似商品を見る",  @amazon_recommend,:target=>["_blank"], :class => "btn btn-warning" ) %> </td>
-                <td><a href= "http://search.rakuten.co.jp/search/mall/<%=@product.product_name%>/"  target ="_blank" ><span class="glyphicon glyphicon-th-list"></span>商品一覧を見る</a></td>
+                <td><%=@rakuten_detail ? (link_to "商品詳細を見る ",  @rakuten_detail,:target=>["_blank"], :class => "btn btn-warning") : "---" %> </td>
+                <td><a href= "http://search.rakuten.co.jp/search/mall/<%=@product.product_name%>/"  target ="_blank" ><span class="glyphicon glyphicon-th-list"></span><%= @rakuten_price ?  " 商品一覧をみる": " 類似商品を確認する"%></a></td>
               </tr>
               <tr>
                 <td>ヤフオク</td>
                 <td id = "amazonpc"><%= @yahoo_price ? number_to_currency(@yahoo_price, :unit => "￥", :precision => 0) :  "商品がありません"%></td>
-                <td><%=@yahoo_detail ? (link_to "商品詳細を見る ",  @yahoo_detail,:target=>["_blank"], :class => "btn btn-warning") : (link_to "類似商品を見る",  @amazon_recommend,:target=>["_blank"], :class => "btn btn-warning" ) %> </td>
-                <td><a href= "http://auctions.search.yahoo.co.jp/search?p=<%=@product.product_name%>"  target ="_blank"><span class="glyphicon glyphicon-th-list"></span> 商品一覧をみる</a></td>
+                <td><%=@yahoo_detail ? (link_to "商品詳細を見る ",  @yahoo_detail,:target=>["_blank"], :class => "btn btn-warning") : "---" %> </td>
+                <td><a href= "http://auctions.search.yahoo.co.jp/search?p=<%=@product.product_name%>"  target ="_blank"><span class="glyphicon glyphicon-th-list"></span><%= @yahoo_price ?  " 商品一覧をみる": " 類似商品を確認する"%></a></td>
               </tr>
             </tbody>
           </table>
