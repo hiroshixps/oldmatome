@@ -136,6 +136,7 @@ GEM
     will_paginate (3.0.7)
     yahoo-api (0.1.6)
       activesupport
+    yaml_db (0.2.3)
 
 PLATFORMS
   ruby
@@ -164,3 +165,4 @@ DEPENDENCIES
   uglifier (= 2.1.1)
   will_paginate
   yahoo-api
+  yaml_db
