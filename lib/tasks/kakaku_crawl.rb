@@ -6,7 +6,7 @@ Bundler.require
 options = {
   :user_agent => "AnemoneCrawler/0.0.1",
   :delay => 0,
-  :depth_limit => 5,
+  :depth_limit => 6,
 }
 @url ='http://kakaku.com/pc/'
 Anemone.crawl(@url, options) do |anemone|
@@ -53,12 +53,6 @@ Anemone.crawl(@url, options) do |anemone|
   end
 end
 
-      # 中カテゴリは取得できないので、マスタからさがして代入
-Product.all.each do |product| 
-  product.m_category = SCategory.find_by_s_category(@product.s_category).m_category.m_category 
-  product.l_category = SCategory.find_by_s_category(@product.s_category).l_category.l_category 
-  product.save
-end   
 
 #@url2 = @url + "spec/#tab"
 #Anemone.crawl(@url2, options) do |anemone|
