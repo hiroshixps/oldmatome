@@ -9,7 +9,7 @@ for i in 600000..700000 do
   enc_key = URI.escape(@url)
   p @url
   begin
-    doc = Nokogiri::HTML(open(enc_key), nil, 'CP932')  do
+    doc = Nokogiri::HTML(open(enc_key))  do
       #     p doc.xpath('//h2').inner_text
       #     p doc.xpath('//li[@class = "makerLabel"]/a').inner_text
       #     p doc.xpath('//li[@class = "seriesLabel"]/a').inner_text
@@ -38,9 +38,14 @@ for i in 600000..700000 do
         end
         @product.save
       end  
+      if @product
+        @product.m_category = SCategory.find_by_s_category(@product.s_category).m_category.m_category 
+        @product.l_category = SCategory.find_by_s_category(@product.s_category).l_category.l_category 
+        @product.save
+      end   
     end
   rescue OpenURI::HTTPError => ex
-    puts "Handle missing video here"
+
   end
 end
 

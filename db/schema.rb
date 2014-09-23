@@ -44,7 +44,7 @@ ActiveRecord::Schema.define(version: 20140902171201) do
     t.datetime "updated_at"
   end
 
-  add_index "products", ["product_name"], name: "index_products_on_product_name"
+  add_index "products", ["product_name"], name: "index_products_on_product_name", using: :btree
 
   create_table "s_categories", force: true do |t|
     t.string   "s_category"

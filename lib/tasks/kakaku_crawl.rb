@@ -19,7 +19,7 @@ Anemone.crawl(@url, options) do |anemone|
 
   anemone.on_every_page do |page|
     if page.url.to_s.match(/\/spec\/$/)
-     doc = Nokogiri::HTML(open(page.url.to_s), nil, 'CP932')
+      doc = Nokogiri::HTML(open(page.url.to_s), nil, 'CP932')
 
       p page.url.to_s
       #     p doc.xpath('//h2').inner_text
@@ -50,6 +50,12 @@ Anemone.crawl(@url, options) do |anemone|
       end
       @product.save
     end
+
+    if @product
+      @product.m_category = SCategory.find_by_s_category(@product.s_category).m_category.m_category 
+      @product.l_category = SCategory.find_by_s_category(@product.s_category).l_category.l_category 
+      @product.save
+    end   
   end
 end
 
