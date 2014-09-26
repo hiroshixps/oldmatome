@@ -13,6 +13,9 @@ set :pty, true
 
 set :format, :pretty
 
+# files we want symlinking to specific entries in shared.
+set :linked_files, %w{config/database.yml}
+
 # Set the post-deployment instructions here.
 # Once the deployment is complete, Capistrano
 # will begin performing them as described.

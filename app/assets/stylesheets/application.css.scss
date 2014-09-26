@@ -146,21 +146,21 @@ textarea {
   background-color: #000000;
 }
 .navbar-default .navbar-toggle .icon-bar {
-    background-color: #FFF;
-    border-color: #fff;
-  }
+  background-color: #FFF;
+  border-color: #fff;
+}
 .navbar-default .navbar-toggle {
-    border-color: #fff;
-  }
+  border-color: #fff;
+}
 .navbar-default  {
-    background-color:transparent;
-    border-color: #fff;
+  background-color:transparent;
+  border-color: #fff;
 }
 .navbar-default .navbar-nav > li > a {
   color: #fff;
 }
 .navbar-nav {
-    background-color:#FE3800;
+  background-color:#FE3800;
 }
 /* ------------------------------------- */
 .title{
@@ -205,9 +205,11 @@ textarea {
   font-size: 12px;
   font-weight: bold;
 }
-.panel-footer > ul {
+.panel-footer  ul,  li {
   -webkit-padding-start: 0px;
   list-style: none;
+  display: block;
+  padding: 0px;
 }                  
 
 .panel-price{
@@ -406,3 +408,4 @@ textarea {
         margin-right: 1em; }
       .flickr_pagination .next_page {
         margin-left: 1em; }
+

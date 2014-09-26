@@ -38,11 +38,7 @@ for i in 600000..700000 do
         end
         @product.save
       end  
-      if @product
-        @product.m_category = SCategory.find_by_s_category(@product.s_category).m_category.m_category 
-        @product.l_category = SCategory.find_by_s_category(@product.s_category).l_category.l_category 
-        @product.save
-      end   
+
     end
   rescue OpenURI::HTTPError => ex
 

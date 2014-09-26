@@ -10,13 +10,12 @@
           <div class="panel-body">
             <%= link_to product, data: { no_turbolink: true }  do %>
               <%= image_tag product.img_url, {:style => 'border: none;', :class => 'img-rounded'} %>
-            <% end %>
           </div>
           <div class="panel-footer">
             <ul>
-              <li><%= product.model %></li>               
               <li class="panel-price"><%= number_to_currency(product.new_price, :unit => "￥", :precision => 0) %></li>
               <li><%= product.product_name %></li>
+            <% end %>
             </ul>
           </div>
         </div>

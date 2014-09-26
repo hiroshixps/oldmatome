@@ -1,20 +1,14 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update, :destroy]
-  if @product
-    @product.m_category = MCategory.find_by_id(SCategory.find_by_s_category(@product.s_category).m_id).m_category 
-    @product.save
-  end   
-
-  add_breadcrumb 'Home', '/'
 
   def search
-    @products = Product.search(params[:search]).paginate(page: params[:page])
+    @products = Product.search(params[:search]).paginate(page: params[:page],:per_page => 40)
     @search_title = params[:search]
     add_breadcrumb @search_title
   end
 
   def index
-    @products = Product.paginate(page: params[:page])
+    @products = Product.paginate(page: params[:page], :per_page => 40)
   end
 
   def show
