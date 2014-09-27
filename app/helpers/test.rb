@@ -7,6 +7,6 @@ require "nokogiri"
     if @ebay_detail = doc.xpath('//h3[@class="lvtitle"]/a/@href').first
       @ebay_price = doc.xpath('//span[@class="g-b"]').first.text.gsub(/[^0-9]/,"").to_i
       @ebay_detail = doc.xpath('//h3[@class="lvtitle"]/a/@href').first.text
-      p @ebay_price
-      p @ebay_detail
+#      p @ebay_price
+#      p @ebay_detail
     end

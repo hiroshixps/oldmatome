@@ -1,9 +1,11 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update, :destroy]
+  add_breadcrumb 'Home', '/'
 
   def search
     @products = Product.search(params[:search]).paginate(page: params[:page],:per_page => 40)
     @search_title = params[:search]
+    add_breadcrumb '商品検索'
     add_breadcrumb @search_title
   end
 

@@ -13,7 +13,7 @@
           </div>
           <div class="panel-footer">
             <ul>
-              <li class="panel-price"><%= number_to_currency(product.new_price, :unit => "￥", :precision => 0) %></li>
+              <li class="panel-price"><%=  number_to_currency([product.new_price.to_i, product.amazon_price.to_i, product.rakuten_price.to_i, product.yahoo_price.to_i, product.ebay_price.to_i].select {|item| item > 0 }.min,:unit => "￥", :precision => 0) %></li>
               <li><%= product.product_name %></li>
             <% end %>
             </ul>
