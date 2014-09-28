@@ -11,12 +11,12 @@ YAHOO_API_ID = "dj0zaiZpPUNIRG1wZE55bEJ1UyZzPWNvbnN1bWVyc2VjcmV0Jng9ZGQ-"
 # 中カテゴリは取得できないので、マスタからさがして代入
 # pc.camera, keitaiカテゴリのみなので注意
 Product.all.each do |product| 
-  if SCategory.find_by_s_category(product.s_category)
+  if !SCategory.find_by_s_category(product.s_category)
+    product.delete
+  elsif !product.m_category
     product.m_category = SCategory.find_by_s_category(product.s_category).m_category.m_category 
     product.l_category = SCategory.find_by_s_category(product.s_category).l_category.l_category 
     product.save
-  else
-    product.delete
   end
 end   
 
@@ -24,7 +24,7 @@ end
 Product.all.each do |product| 
   # get_yahoopc
 
-  enc_key = URI.escape(product.product_name.gsub(/\[|\]/, " "))
+  enc_key = URI.escape(product.product_name.gsub(/\[|\]|\?|&|\(|\)\{|\}|\?|\*|\/|\+/, " "))
   url1 = "http://auctions.yahooapis.jp/AuctionWebService/V2/search?appid=#{YAHOO_API_ID}&query=#{enc_key}&sort=cbids"
   begin
     doc1 = Nokogiri::XML(open(url1))
