@@ -24,7 +24,7 @@ for i in 600000..700000 do
           brand: doc.xpath('//li[@class = "makerLabel"]/a').inner_text,
           series: doc.xpath('//li[@class = "seriesLabel"]/a').inner_text,
           new_price: doc.xpath('//span[@id = "minPrice"]/a').inner_text.gsub(/[^0-9]/,"").to_i,
-          img_url: doc.xpath('//div[@id = "imgBox"]/a/img/@src').inner_text,
+          img_url: (doc.xpath('//div[@id = "imgBox"]/img/@src').inner_text == "") ? doc.xpath('//div[@id = "imgBox"]/a/img/@src').inner_text : doc.xpath('//div[@id = "imgBox"]/img/@src').inner_text,
           kakaku_url: "http://kakaku.com/item/K#{sprintf("%010d",i-1).to_s}/spec/",
           s_category: doc.xpath('//div[@class = "path btmPath"]/*[3]').inner_text
         )

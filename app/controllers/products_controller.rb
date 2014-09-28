@@ -124,6 +124,12 @@ class ProductsController < ApplicationController
       @meta_description ="#{SCategory.find_by(id: @category).s_category}の中古商品一覧。アマゾン、楽天、ヤフオク、ebayから比較して一番安い価格を確認！"
       @robots ="index,follow"
       @canonical = request.path_info
+    else
+      @titletag = "UsedX-中古家電の総合価格比較サイト"
+      @meta_keyword ="中古,中古家電,中古パソコン,中古カメラ,中古携帯,中古エアコン,中古洗濯機,中古テレビ"
+      @meta_description ="中古家電の総合価格比較サイトUsedX! あらゆる中古家電、PC、スマホの価格を簡単比較。ほしい商品を一番安く買えるサイト！"
+      @robots ="index,follow"
+      @canonical = request.path_info
     end
   end
 

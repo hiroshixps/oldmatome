@@ -190,10 +190,17 @@ textarea {
 
 .panel-body {
   text-align: center;
-  height: 150px;
+  height: 120px;
+  width: 160px;
   padding-top: 10px;
   color: #F7ECEC;
   font-size: 18px;
+  margin: 0 auto;
+}
+
+.panel-body img {
+  width:100%;
+  height:100%;
 }
 
 .panel-footer {
