@@ -12,7 +12,7 @@
         </div>
       </div>
       <div class="col-sm-9 product">
-        <h1 class="left"><%= @product.product_name %></h1><hr>
+        <h1 class="left"><%= @product.product_name %>の中古価格</h1><hr>
         <div class="col-sm-4 product">
           <ul>
             <li>メーカー：<%= @product.brand %></li>               
@@ -34,27 +34,27 @@
           </tr>
               <tr>
                 <td>Amazon（アマゾン）</td>
-                <td id = "amazonpc"><%= @product.amazon_price ? number_to_currency(@product.amazon_price, :unit => "￥", :precision => 0) : "商品がありません"%></td>
+                <td class = "panel-price"><%= @product.amazon_price ? number_to_currency(@product.amazon_price, :unit => "￥", :precision => 0) : "商品がありません"%></td>
                 <td><%=@product.amazon_url ? (link_to "商品詳細を見る",  @product.amazon_url,:target=>["_blank"], :class => "btn btn-warning") : "---" %> </td>
                 <td><a href= "http://www.amazon.co.jp/s/field-keywords=<%=@product.product_name.gsub(/\[|\]|\?|&|\(|\)\{|\}|\?|\*|\/|\+/, " ")%>/?_encoding=UTF8&camp=247&creative=1211&linkCode=ur2&tag=hiroshixps-22/"  target ="_blank" ><span class="glyphicon glyphicon-th-list"></span><%= @product.amazon_price ?  " 商品一覧をみる": " 類似商品を確認する"%></a></td>
               </tr>
               <tr>
                 <td>楽天中古市場</td>
-                <td id = "amazonpc"><%= @product.rakuten_price ? number_to_currency(@product.rakuten_price, :unit => "￥", :precision => 0) :  "商品がありません"%></td>
+                <td class = "panel-price"><%= @product.rakuten_price ? number_to_currency(@product.rakuten_price, :unit => "￥", :precision => 0) :  "商品がありません"%></td>
                 <td><%=@product.rakuten_url ? (link_to "商品詳細を見る ",  @product.rakuten_url,:target=>["_blank"], :class => "btn btn-warning") : "---" %> </td>
                 <td><a href= "http://hb.afl.rakuten.co.jp/hgc/0e6d5595.f4187c7a.0e6d5596.9b1eb6e7/?pc=http%3a%2f%2fsearch.rakuten.co.jp%2fsearch%2fmall%2f<%=@product.product_name.gsub(/\[|\]|\?|&|\(|\)\{|\}|\?|\*|\/|\+/, " ")%>%2f%3fscid%3daf_link_urltxt&amp;m=http%3a%2f%2fm.rakuten.co.jp%2f/"  target ="_blank" ><span class="glyphicon glyphicon-th-list"></span><%= @product.rakuten_price ?  " 商品一覧をみる": " 類似商品を確認する"%></a></td>
               </tr>
               <tr>
                 <td>ヤフオク</td>
-                <td id = "amazonpc"><%= @product.yahoo_price ? number_to_currency(@product.yahoo_price, :unit => "￥", :precision => 0) :  "商品がありません"%></td>
+                <td class = "panel-price"><%= @product.yahoo_price ? number_to_currency(@product.yahoo_price, :unit => "￥", :precision => 0) :  "商品がありません"%></td>
                 <td><%=@product.yahoo_url ? (link_to "商品詳細を見る ",  @product.yahoo_url,:target=>["_blank"], :class => "btn btn-warning") : "---" %> </td>
                 <td><a href= "http://ck.jp.ap.valuecommerce.com/servlet/referral?sid=3159712&pid=882988247&vc_url=http%3A%2F%2Fauctions.search.yahoo.co.jp%2Fsearch%3Fp%3D<%=@product.product_name.gsub(/\[|\]|\?|&|\(|\)\{|\}|\?|\*|\/|\+/, " ")%>"  target ="_blank"><span class="glyphicon glyphicon-th-list"></span><%= @product.yahoo_price ?  " 商品一覧をみる": " 類似商品を確認する"%></a></td>
               </tr>
               <tr>
                 <td>eBay(イーベイ)</td>
-                <td id = "amazonpc"><%= @product.ebay_price ? number_to_currency(@product.ebay_price, :unit => "￥", :precision => 0) :  "商品がありません"%></td>
-                <td><%=@product.yahoo_url ? (link_to "商品詳細を見る ",  @product.ebay_url,:target=>["_blank"], :class => "btn btn-warning") : "---" %> </td>
-                <td><a href= "http://www.ebay.com/sch/i.html?&_nkw=<%=@product.product_name.gsub(/\[|\]|\?|&|\(|\)\{|\}|\?|\*|\/|\+/, " ")%>"  target ="_blank"><span class="glyphicon glyphicon-th-list"></span><%= @product.ebay_price ?  " 商品一覧をみる": " 類似商品を確認する"%></a></td>
+                <td class = "panel-price"><%= @product.ebay_price ? number_to_currency(@product.ebay_price, :unit => "￥", :precision => 0) :  "商品がありません"%></td>
+                <td><%=@product.ebay_url ? (link_to "商品詳細を見る ",  @product.ebay_url,:target=>["_blank"], :class => "btn btn-warning") : "---" %> </td>
+                <td><a href= "http://www.ebay.com/sch/i.html?&_nkw=<%=@product.product_name.gsub(/\[|\]|\?|&|\(|\)\{|\}|\?|\*|\/|\+|[^ -~｡-ﾟ]/, " ")%>"  target ="_blank"><span class="glyphicon glyphicon-th-list"></span><%= @product.ebay_price ?  " 商品一覧をみる": " 類似商品を確認する"%></a></td>
               </tr>
             </tbody>
           </table>

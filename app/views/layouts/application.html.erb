@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="UTF-8">
-    <title><%= @product ? "最安中古価格情報 | #{@product.product_name}" : "UsedX-中古家電の総合価格比較サイト"%></title>
-    <meta name="keywords" content="中古,中古家電,中古パソコン,中古カメラ,中古携帯,中古エアコン,中古洗濯機,中古テレビ" />
-    <meta name="description" content="中古家電の総合価格比較サイトUsedX! あらゆる中古家電、PC、スマホの価格を簡単比較。ほしい商品を一番安く買えるサイト！" />
-    <meta name="robots" content="index,follow" />
-    <link rel="canonical" href="http://rpssales.com/" />
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8">
+    <title><%= @titletag %></title>
+    <meta name="keywords" content="<%= @meta_keyword %>" />
+    <meta name="description" content="<%= @meta_description %>" />
+    <meta name="robots" content="<%= @robots %>" />
+    <link rel="canonical" href="<%= @canonical %>" />
     <%= stylesheet_link_tag "application", media: "all",
       "data-turbolinks-track" => true %>
     <%= javascript_include_tag "application", "data-turbolinks-track" => true %>

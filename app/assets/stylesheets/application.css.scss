@@ -38,6 +38,7 @@ body {
 }
 .footer ul {
   margin: 30px;
+  margin-bottom: 0px;
 }
 
 .footer a {
@@ -73,7 +74,7 @@ textarea {
 
 .vcenter {
   vertical-align: middle;
-  margin-top: 60px;
+  margin-top: 30px;
 }
 
 .header a{
@@ -161,6 +162,7 @@ textarea {
 }
 .navbar-nav {
   background-color:#FE3800;
+  height:40px;
 }
 /* ------------------------------------- */
 .title{
@@ -208,14 +210,15 @@ textarea {
 .panel-footer  ul,  li {
   -webkit-padding-start: 0px;
   list-style: none;
-  display: block;
   padding: 0px;
 }                  
 
 .panel-price{
-  font-size: 18px;
+  font-size: 120%;
+  font-weight: bold;
   color:#FF0000 ;
 }
+
 /*  button-box
 /*--------------------------------- */
 .button-box{
@@ -265,11 +268,11 @@ textarea {
   color: #333;
 }
 .left-menu{
-  padding-left: 10px;
-  margin-top:79px;
+  padding: 10px;
   padding-bottom:20px;
+  margin-top:10px;
   margin-bottom:20px;
-  background-color: #FFF;
+  border: 1px solid #e1e1e8;
 }
 
 .left-menu ul{
@@ -282,10 +285,13 @@ textarea {
   color: #333;
 }
 
+.left-menu h3 {
+  font: bold 18px Arial, Helvetica, sans-serif;
+}
 .top-menu{
   padding-left: 10px;
   padding-bottom: 20px;
-  background-color: #FFF;
+  border: 1px solid #e1e1e8;
 }
 
 .top-menu ul{

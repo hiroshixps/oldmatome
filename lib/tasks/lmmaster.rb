@@ -25,6 +25,7 @@ Product.all.each do |product|
   # get_yahoopc
 
   enc_key = URI.escape(product.product_name.gsub(/\[|\]|\?|&|\(|\)\{|\}|\?|\*|\/|\+/, " "))
+  enc_key2 = URI.escape(product.product_name.gsub(/\[|\]|\?|&|\(|\)\{|\}|\?|\*|\/|\+|[^ -~｡-ﾟ]/, " "))
   url1 = "http://auctions.yahooapis.jp/AuctionWebService/V2/search?appid=#{YAHOO_API_ID}&query=#{enc_key}&sort=cbids"
   begin
     doc1 = Nokogiri::XML(open(url1))
@@ -71,7 +72,7 @@ Product.all.each do |product|
   end
 
   # get_ebaypc
-  url = "http://www.ebay.com/sch/i.html?&_nkw=#{enc_key}"
+  url = "http://www.ebay.com/sch/i.html?&_nkw=#{enc_key2}"
   begin
     doc = Nokogiri::HTML(open(url), nil, "UTF-8" )
     if @ebay_detail = doc.xpath('//h3[@class="lvtitle"]/a/@href').first

@@ -1,12 +1,13 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update, :destroy]
+  before_filter :headmetatag_control
   add_breadcrumb 'Home', '/'
 
   def search
     @products = Product.search(params[:search]).paginate(page: params[:page],:per_page => 40)
     @search_title = params[:search]
     add_breadcrumb '商品検索'
-    add_breadcrumb @search_title
+    add_breadcrumb "#{@search_title}の中古商品一覧"
   end
 
   def index
@@ -83,6 +84,48 @@ class ProductsController < ApplicationController
     end
   end
 
+  def headmetatag_control
+    if request.path_info == "/"
+      @titletag = "UsedX-中古家電の総合価格比較サイト"
+      @meta_keyword ="中古,中古家電,中古パソコン,中古カメラ,中古携帯,中古エアコン,中古洗濯機,中古テレビ"
+      @meta_description ="中古家電の総合価格比較サイトUsedX! あらゆる中古家電、PC、スマホの価格を簡単比較。ほしい商品を一番安く買えるサイト！"
+      @robots ="index,follow"
+      @canonical = "http://rpssales.com/"
+    elsif @product
+      @titletag = "#{@product.product_name}の中古価格一覧 | UsedX"
+      @meta_keyword ="#{@product.product_name}, #{@product.brand},#{@product.series},中古価格,仕様,スペック, オークション,最安値"
+      @meta_description ="#{@product.product_name}の中古価格一覧。アマゾン、楽天、ヤフオク、ebayから比較して一番安い価格を確認！"
+      @robots ="index,follow"
+      @canonical = request.path_info
+    elsif params[:search]
+      @titletag ="#{params[:search]}の中古商品検索結果 | UsedX"
+      @meta_keyword ="#{params[:search]},中古価格,仕様,スペック, オークション,最安値"
+      @meta_description ="#{params[:search]}の中古商品一覧。アマゾン、楽天、ヤフオク、ebayから比較して一番安い価格を確認！"
+      @robots ="index,follow"
+      @canonical = request.path_info
+    elsif params[:lcat]
+      @category = [params[:lcat]]
+      @titletag ="#{LCategory.find_by(id: @category).l_category}の中古商品一覧 | UsedX"
+      @meta_keyword ="#{LCategory.find_by(id: @category).l_category},中古価格,仕様,スペック, オークション,最安値"
+      @meta_description ="#{LCategory.find_by(id: @category).l_category}の中古商品一覧。アマゾン、楽天、ヤフオク、ebayから比較して一番安い価格を確認！"
+      @robots ="index,follow"
+      @canonical = request.path_info
+    elsif params[:mcat]
+      @category = [params[:mcat]]
+      @titletag ="#{MCategory.find_by(id: @category).m_category}の中古商品一覧 | UsedX"
+      @meta_keyword ="#{MCategory.find_by(id: @category).m_category},中古価格,仕様,スペック, オークション,最安値"
+      @meta_description ="#{MCategory.find_by(id: @category).m_category}の中古商品一覧。アマゾン、楽天、ヤフオク、ebayから比較して一番安い価格を確認！"
+      @robots ="index,follow"
+      @canonical = request.path_info
+    elsif params[:scat]
+      @category = [params[:scat]]
+      @titletag ="#{SCategory.find_by(id: @category).s_category}の中古商品一覧 | UsedX"
+      @meta_keyword ="#{SCategory.find_by(id: @category).s_category},中古価格,仕様,スペック, オークション,最安値"
+      @meta_description ="#{SCategory.find_by(id: @category).s_category}の中古商品一覧。アマゾン、楽天、ヤフオク、ebayから比較して一番安い価格を確認！"
+      @robots ="index,follow"
+      @canonical = request.path_info
+    end
+  end
 
   private
   # Use callbacks to share common setup or constraints between actions.

@@ -1,28 +1,31 @@
 <div id="content">
   <div class="container">
-    <%= render_breadcrumbs separator: ' > ' %>
-    <h1 class="center"><%= MCategory.find_by(id: @category).m_category  %>の一覧</h1><br>
-    <form class="form-horizontal" role="form" action="/search" method="get">
+    <div>
+      <%= render_breadcrumbs separator: ' > ' %>
+    </div>
+    <form class="form-horizontal col-sm-10" role="form" action="/search" method="get">
       <div class="form-group">
-        <div class="col-sm-offset-1 col-sm-8">
+        <div class=" col-sm-10 vcenter">
           <input type="search" name="search" class="form-control" placeholder="商品名、型番、メーカーを入力してください" value="<%= params[:search] %>">
         </div>
-        <div class="col-sm-2">
-          <button type="submit" class="btn btn-default">検索</button>
+        <div class="col-sm-2 vcenter">
+          <button type="submit" class="btn btn-default btn-warning">検索</button>
         </div>
       </div>
     </form>
+    <div class="clearfix"></div><hr>
 
     <div class=" col-sm-2 left-menu">
-    <h3><%= MCategory.find_by(id: @category).m_category  %></h3>
-    <% MCategory.find_by_id(@category).s_categories.each do |sc| %>
-      <div class="clearfix">
-       <ul><li><%=link_to sc.s_category, scategory_path(:scat => sc.id) %></li></ul>
-      </div>
-    <% end %>
-      </div>
+      <h1 class="center"><%= MCategory.find_by(id: @category).m_category  %>一覧</h1><br>
+      <h3><%= MCategory.find_by(id: @category).m_category  %></h3>
+      <% MCategory.find_by_id(@category).s_categories.each do |sc| %>
+        <div class="clearfix">
+          <ul><li><%=link_to sc.s_category, scategory_path(:scat => sc.id) %></li></ul>
+        </div>
+      <% end %>
+    </div>
 
-      <%= render 'product_list' %>
+    <%= render 'product_list' %>
 
   </div>
 </div>
